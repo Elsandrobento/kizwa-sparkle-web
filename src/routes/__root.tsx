@@ -57,9 +57,6 @@ export const Route = createRootRoute({
   notFoundComponent: NotFoundComponent,
 });
 
-import { ThemeProvider } from "../lib/ThemeContext";
-import { I18nProvider } from "../lib/I18nContext";
-
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt">
@@ -73,12 +70,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body>
-        <ThemeProvider defaultTheme="system" storageKey="kizwa-theme">
-          <I18nProvider>
-            {children}
-            <Scripts />
-          </I18nProvider>
-        </ThemeProvider>
+        {children}
+        <Scripts />
       </body>
     </html>
   );

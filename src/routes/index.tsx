@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, HardHat, Truck, Zap, Wrench, Droplets, CheckCircle2, Shield, Award, Users } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { whatsappUrl } from "@/lib/site";
-import { useI18n } from "@/lib/I18nContext";
 import hero from "@/assets/hero-construction.jpg";
 import projBiblio from "@/assets/proj-biblioteca-1.jpg";
 import projResid from "@/assets/proj-residencia-1.jpg";
@@ -44,8 +43,6 @@ const stats = [
 ];
 
 function HomePage() {
-  const { t } = useI18n();
-
   return (
     <SiteLayout>
       {/* HERO */}
@@ -60,26 +57,26 @@ function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/75 to-ink/30" />
         <div className="container-pro relative py-32 text-ink-foreground">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-glow animate-fade-up">
-            {t("hero.subtitle")}
+            Kizwa Valongo · Bié, Angola
           </p>
           <h1 className="mt-5 font-display text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] max-w-4xl text-balance animate-fade-up delay-100">
-            {t("hero.title")}
+            Construímos a infraestrutura que sustenta o futuro de Angola.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-ink-foreground/80 leading-relaxed animate-fade-up delay-200">
-            {t("hero.desc")}
+            Soluções integradas em construção civil, fiscalização de obras, transportes e instalações técnicas — com rigor, segurança e compromisso.
           </p>
           <div className="mt-10 flex flex-wrap gap-4 animate-fade-up delay-300">
             <Link
               to="/contactos"
               className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-7 py-3.5 text-sm font-semibold shadow-elegant hover:scale-[1.03] transition-smooth"
             >
-              {t("hero.btnQuote")} <ArrowRight size={16} />
+              Solicitar Orçamento <ArrowRight size={16} />
             </Link>
             <Link
               to="/portfolio"
               className="inline-flex items-center gap-2 rounded-full border border-ink-foreground/30 backdrop-blur bg-white/5 px-7 py-3.5 text-sm font-semibold hover:bg-white/10 transition-smooth"
             >
-              {t("hero.btnProjects")}
+              Ver Projetos
             </Link>
           </div>
 
@@ -220,22 +217,20 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PARTNERS */}
-      <section className="bg-secondary/50 py-24">
-        <div className="container-pro">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">{t("partners.eyebrow")}</p>
-            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">{t("partners.title")}</h2>
-            <p className="mt-4 text-muted-foreground">{t("partners.desc")}</p>
-          </div>
-          
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-70 grayscale hover:grayscale-0 transition-smooth duration-500">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex justify-center p-6 bg-background rounded-2xl shadow-card-soft border border-border">
-                <span className="font-display font-bold text-xl text-muted-foreground">Parceiro {i}</span>
-              </div>
-            ))}
-          </div>
+      {/* PARTNERS SECTION */}
+      <section className="container-pro py-16 border-t border-border">
+        <div className="text-center mb-10">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            Os nossos parceiros
+          </h3>
+        </div>
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
+          {/* Parceiros Placeholders - Substituir pelas imagens reais */}
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex items-center justify-center h-12 w-32 bg-secondary/50 rounded-lg border border-border grayscale hover:grayscale-0 transition-all duration-300">
+              <span className="font-display font-bold text-muted-foreground">Parceiro {i}</span>
+            </div>
+          ))}
         </div>
       </section>
 

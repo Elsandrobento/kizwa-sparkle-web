@@ -5,7 +5,6 @@ import { Phone, Mail, MapPin, Send, MessageCircle, CheckCircle2, AlertCircle } f
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { SITE, whatsappUrl } from "@/lib/site";
-import { useI18n } from "@/lib/I18nContext";
 
 export const Route = createFileRoute("/contactos")({
   head: () => ({
@@ -36,7 +35,6 @@ type Status = "idle" | "ok" | "error";
 function ContactosPage() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const { t } = useI18n();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,8 +47,8 @@ function ContactosPage() {
       return;
     }
     const { name, email, phone, subject, message } = parsed.data;
-    const text = `Olá Kizwa Valongo,\n\nNome: ${name}\nEmail: ${email}${phone ? `\nTelefone: ${phone}` : ""}\nAssunto: ${subject}\n\n${message}`;
-    window.open(whatsappUrl(text), "_blank", "noopener");
+    const text = `Nome: ${name}\nEmail: ${email}${phone ? `\nTelefone: ${phone}` : ""}\n\nMensagem:\n${message}`;
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
     setStatus("ok");
     e.currentTarget.reset();
   };
@@ -58,9 +56,9 @@ function ContactosPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow={t("contactosPage.eyebrow")}
-        title={t("contactosPage.title")}
-        subtitle={t("contactosPage.subtitle")}
+        eyebrow="Contactos"
+        title="Vamos falar do seu projeto."
+        subtitle="A nossa equipa responde rapidamente. Solicite um orçamento ou tire as suas dúvidas — sem compromisso."
       />
 
       <section className="container-pro py-20 grid lg:grid-cols-3 gap-8">
@@ -87,28 +85,29 @@ function ContactosPage() {
             </a>
           ))}
 
-          <a
-            href={whatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-[#25D366] text-white px-6 py-4 font-semibold hover:opacity-90 transition-smooth"
+          <button
+            onClick={() => {
+              const form = document.querySelector('form');
+              if (form) form.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-primary text-primary-foreground px-6 py-4 font-semibold hover:opacity-90 transition-smooth"
           >
-            <MessageCircle size={18} /> Falar no WhatsApp
-          </a>
+            <Mail size={18} /> Preencher Formulário
+          </button>
         </aside>
 
         <div className="lg:col-span-2 bg-card rounded-2xl border border-border p-8 shadow-card-soft">
-          <h2 className="font-display text-2xl font-bold">{t("contactosPage.form.title")}</h2>
+          <h2 className="font-display text-2xl font-bold">Envie-nos um Email</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            {t("contactosPage.form.desc")}
+            Preencha o formulário para abrir o seu cliente de email predefinido com os dados prontos a enviar.
           </p>
           <form className="mt-6 grid sm:grid-cols-2 gap-4" onSubmit={onSubmit} noValidate>
-            <Field label={t("contactosPage.form.name")} name="name" required />
-            <Field label={t("contactosPage.form.email")} name="email" type="email" required />
-            <Field label={t("contactosPage.form.phone")} name="phone" type="tel" />
-            <Field label={t("contactosPage.form.subject")} name="subject" required />
+            <Field label="Nome completo" name="name" required />
+            <Field label="Email" name="email" type="email" required />
+            <Field label="Telefone (opcional)" name="phone" type="tel" />
+            <Field label="Assunto" name="subject" required />
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium mb-1.5">{t("contactosPage.form.message")}</label>
+              <label className="block text-sm font-medium mb-1.5">Mensagem</label>
               <textarea
                 name="message"
                 rows={5}
@@ -125,7 +124,7 @@ function ContactosPage() {
             )}
             {status === "ok" && (
               <div className="sm:col-span-2 flex items-center gap-2 text-sm text-primary">
-                <CheckCircle2 size={16} /> {t("contactosPage.form.ok")}
+                <CheckCircle2 size={16} /> O seu cliente de email foi aberto com a mensagem pronta.
               </div>
             )}
 
@@ -134,7 +133,7 @@ function ContactosPage() {
                 type="submit"
                 className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-7 py-3.5 text-sm font-semibold shadow-elegant hover:scale-[1.02] transition-smooth"
               >
-                {t("contactosPage.form.btn")} <Send size={16} />
+                Enviar mensagem <Send size={16} />
               </button>
             </div>
           </form>

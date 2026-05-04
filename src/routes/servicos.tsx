@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Building2, HardHat, Truck, Zap, Wrench, Droplets, Wind, ShoppingBag, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
-import { useI18n } from "@/lib/I18nContext";
 
 export const Route = createFileRoute("/servicos")({
   head: () => ({
@@ -72,14 +71,12 @@ const services = [
 ];
 
 function ServicosPage() {
-  const { t } = useI18n();
-
   return (
     <SiteLayout>
       <PageHero
-        eyebrow={t("servicosPage.eyebrow")}
-        title={t("servicosPage.title")}
-        subtitle={t("servicosPage.subtitle")}
+        eyebrow="Serviços"
+        title="Soluções completas em engenharia, infraestrutura e logística."
+        subtitle="Acompanhamos cada projeto do planeamento à entrega, garantindo qualidade, segurança e cumprimento dos prazos."
       />
 
       <section className="container-pro py-20">
@@ -96,7 +93,7 @@ function ServicosPage() {
                 <div>
                   <h3 className="font-display text-xl font-bold">{s.title}</h3>
                   <p className="mt-2 text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <ul className="mt-5 grid sm:grid-cols-3 gap-2">
+                  <ul className="mt-5 flex flex-wrap gap-2">
                     {s.benefits.map((b) => (
                       <li key={b} className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground inline-block">
                         {b}
@@ -114,7 +111,7 @@ function ServicosPage() {
             to="/contactos"
             className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-8 py-4 text-sm font-semibold shadow-elegant hover:scale-[1.03] transition-smooth"
           >
-            {t("hero.btnQuote")} <ArrowRight size={16} />
+            Solicitar Orçamento <ArrowRight size={16} />
           </Link>
         </div>
       </section>

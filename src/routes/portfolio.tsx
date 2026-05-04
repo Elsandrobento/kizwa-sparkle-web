@@ -16,6 +16,8 @@ import exec1 from "@/assets/proj-execucao-1.jpg";
 import exec2 from "@/assets/proj-execucao-2.jpg";
 import render1 from "@/assets/proj-render-1.jpg";
 import render2 from "@/assets/proj-render-2.jpg";
+import { ProjectGallery } from "@/components/site/ProjectGallery";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -73,6 +75,7 @@ const projects = [
   },
 ];
 
+
 function PortfolioPage() {
   return (
     <SiteLayout>
@@ -82,36 +85,38 @@ function PortfolioPage() {
         subtitle="Uma seleção de obras e intervenções realizadas pela Kizwa Valongo em Angola."
       />
 
-
-
-      <section className="container-pro pb-20 space-y-24">
-        {projects.map((p, idx) => (
-          <article key={p.title} className="grid lg:grid-cols-12 gap-10 items-center">
-            <div className={`lg:col-span-5 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">{p.tag}</p>
-              <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold text-balance">{p.title}</h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">{p.description}</p>
-            </div>
-            <div className={`lg:col-span-7 grid grid-cols-2 gap-4 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-              {p.images.map((img, i) => (
-                <div
-                  key={i}
-                  className={[
-                    "overflow-hidden rounded-2xl shadow-card-soft hover:shadow-elegant transition-smooth",
-                    i === 0 && p.images.length > 1 ? "col-span-2 aspect-[16/10]" : "aspect-square",
-                  ].join(" ")}
-                >
-                  <img
-                    src={img}
-                    alt={`${p.title} — imagem ${i + 1}`}
-                    loading="lazy"
-                    className="w-full h-full object-cover hover:scale-105 transition-smooth duration-700"
-                  />
+      <section className="container-pro pb-32">
+        <div className="space-y-32">
+          {projects.map((p, idx) => (
+            <article 
+              key={p.title} 
+              className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-fade-up"
+              style={{ animationDelay: `${idx * 150}ms` }}
+            >
+              <div className={`lg:col-span-5 space-y-6 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
+                <div className="space-y-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/80">{p.tag}</p>
+                  <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight tracking-tight text-foreground">
+                    {p.title}
+                  </h2>
                 </div>
-              ))}
-            </div>
-          </article>
-        ))}
+                
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {p.description}
+                </p>
+
+                <div className="pt-4 flex items-center gap-4 text-primary font-semibold text-sm group cursor-pointer">
+                  <span className="w-8 h-px bg-primary/30 group-hover:w-12 transition-all duration-500"></span>
+                  <span>Ver Detalhes do Projeto</span>
+                </div>
+              </div>
+
+              <div className={`lg:col-span-7 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
+                <ProjectGallery images={p.images} title={p.title} />
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </SiteLayout>
   );

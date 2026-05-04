@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
+import { useI18n } from "@/lib/I18nContext";
+import { MapPin } from "lucide-react";
+import { PageHero } from "@/components/site/PageHero";
 import biblio1 from "@/assets/proj-biblioteca-1.jpg";
 import biblio2 from "@/assets/proj-biblioteca-2.jpg";
 import biblio3 from "@/assets/proj-biblioteca-3.jpg";
@@ -73,15 +76,64 @@ const projects = [
 ];
 
 function PortfolioPage() {
+  const { t } = useI18n();
+
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Portfólio"
-        title="Projetos que reflectem o nosso compromisso com a qualidade."
+        eyebrow={t("portfolio.eyebrow")}
+        title={t("portfolio.title")}
         subtitle="Uma seleção de obras e intervenções realizadas pela Kizwa Valongo em Angola."
       />
 
-      <section className="container-pro py-20 space-y-24">
+      <section className="container-pro py-16">
+        <div className="bg-card rounded-3xl border border-border p-8 md:p-12 shadow-card-soft">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h3 className="font-display text-2xl font-bold">{t("portfolio.mapTitle")}</h3>
+            <p className="text-muted-foreground mt-2">{t("portfolio.mapDesc")}</p>
+          </div>
+          
+          {/* Angola Map Visual Representation */}
+          <div className="relative aspect-[16/9] bg-secondary/30 rounded-2xl border border-border flex items-center justify-center overflow-hidden group">
+            {/* SVG Abstract Background Map */}
+            <svg viewBox="0 0 800 600" className="absolute inset-0 w-full h-full text-primary/10 drop-shadow-sm group-hover:text-primary/20 transition-smooth" fill="currentColor">
+              <path d="M300 100 C 400 50, 500 100, 600 150 C 700 200, 750 300, 700 400 C 650 500, 550 550, 450 500 C 350 450, 200 500, 150 400 C 100 300, 150 200, 200 150 C 250 100, 280 120, 300 100 Z" />
+            </svg>
+            
+            {/* Pin: Bié (Sede) */}
+            <div className="absolute top-[45%] left-[55%] flex flex-col items-center group/pin">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-primary/20 rounded-full animate-ping" />
+                <MapPin className="text-primary relative z-10 drop-shadow-md" size={32} />
+              </div>
+              <div className="mt-2 bg-background/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-elegant border border-border text-center transform opacity-0 -translate-y-2 group-hover/pin:opacity-100 group-hover/pin:translate-y-0 transition-smooth">
+                <p className="font-bold text-sm">Bié</p>
+                <p className="text-[10px] text-muted-foreground">Sede Operacional</p>
+              </div>
+            </div>
+
+            {/* Pin: Luanda */}
+            <div className="absolute top-[30%] left-[35%] flex flex-col items-center group/pin">
+              <MapPin className="text-primary/70 relative z-10 drop-shadow-md hover:scale-110 transition-smooth" size={24} />
+              <div className="mt-2 bg-background/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-elegant border border-border text-center transform opacity-0 -translate-y-2 group-hover/pin:opacity-100 group-hover/pin:translate-y-0 transition-smooth">
+                <p className="font-bold text-sm">Luanda</p>
+                <p className="text-[10px] text-muted-foreground">Projetos Executados</p>
+              </div>
+            </div>
+
+            {/* Pin: Huambo */}
+            <div className="absolute top-[50%] left-[48%] flex flex-col items-center group/pin">
+              <MapPin className="text-primary/70 relative z-10 drop-shadow-md hover:scale-110 transition-smooth" size={24} />
+              <div className="mt-2 bg-background/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-elegant border border-border text-center transform opacity-0 -translate-y-2 group-hover/pin:opacity-100 group-hover/pin:translate-y-0 transition-smooth">
+                <p className="font-bold text-sm">Huambo</p>
+                <p className="text-[10px] text-muted-foreground">Obras em Curso</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-pro pb-20 space-y-24">
         {projects.map((p, idx) => (
           <article key={p.title} className="grid lg:grid-cols-12 gap-10 items-center">
             <div className={`lg:col-span-5 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>

@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Send, MessageCircle, CheckCircle2, AlertCircle } f
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { SITE, whatsappUrl } from "@/lib/site";
+import { useI18n } from "@/lib/I18nContext";
 
 export const Route = createFileRoute("/contactos")({
   head: () => ({
@@ -35,6 +36,7 @@ type Status = "idle" | "ok" | "error";
 function ContactosPage() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const { t } = useI18n();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,9 +58,9 @@ function ContactosPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Contactos"
-        title="Vamos falar do seu projeto."
-        subtitle="A nossa equipa responde rapidamente. Solicite um orçamento ou tire as suas dúvidas — sem compromisso."
+        eyebrow={t("contactosPage.eyebrow")}
+        title={t("contactosPage.title")}
+        subtitle={t("contactosPage.subtitle")}
       />
 
       <section className="container-pro py-20 grid lg:grid-cols-3 gap-8">
@@ -96,17 +98,17 @@ function ContactosPage() {
         </aside>
 
         <div className="lg:col-span-2 bg-card rounded-2xl border border-border p-8 shadow-card-soft">
-          <h2 className="font-display text-2xl font-bold">Envie-nos uma mensagem</h2>
+          <h2 className="font-display text-2xl font-bold">{t("contactosPage.form.title")}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Preencha o formulário e a sua mensagem será encaminhada via WhatsApp para resposta imediata.
+            {t("contactosPage.form.desc")}
           </p>
           <form className="mt-6 grid sm:grid-cols-2 gap-4" onSubmit={onSubmit} noValidate>
-            <Field label="Nome completo" name="name" required />
-            <Field label="Email" name="email" type="email" required />
-            <Field label="Telefone (opcional)" name="phone" type="tel" />
-            <Field label="Assunto" name="subject" required />
+            <Field label={t("contactosPage.form.name")} name="name" required />
+            <Field label={t("contactosPage.form.email")} name="email" type="email" required />
+            <Field label={t("contactosPage.form.phone")} name="phone" type="tel" />
+            <Field label={t("contactosPage.form.subject")} name="subject" required />
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium mb-1.5">Mensagem</label>
+              <label className="block text-sm font-medium mb-1.5">{t("contactosPage.form.message")}</label>
               <textarea
                 name="message"
                 rows={5}
@@ -123,7 +125,7 @@ function ContactosPage() {
             )}
             {status === "ok" && (
               <div className="sm:col-span-2 flex items-center gap-2 text-sm text-primary">
-                <CheckCircle2 size={16} /> Mensagem preparada — abrimos o WhatsApp para envio.
+                <CheckCircle2 size={16} /> {t("contactosPage.form.ok")}
               </div>
             )}
 
@@ -132,7 +134,7 @@ function ContactosPage() {
                 type="submit"
                 className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-7 py-3.5 text-sm font-semibold shadow-elegant hover:scale-[1.02] transition-smooth"
               >
-                Enviar mensagem <Send size={16} />
+                {t("contactosPage.form.btn")} <Send size={16} />
               </button>
             </div>
           </form>

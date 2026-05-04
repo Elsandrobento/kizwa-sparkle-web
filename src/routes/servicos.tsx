@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Building2, HardHat, Truck, Zap, Wrench, Droplets, Wind, ShoppingBag, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
+import { useI18n } from "@/lib/I18nContext";
 
 export const Route = createFileRoute("/servicos")({
   head: () => ({
@@ -71,12 +72,14 @@ const services = [
 ];
 
 function ServicosPage() {
+  const { t } = useI18n();
+
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Serviços"
-        title="Soluções completas em engenharia, infraestrutura e logística."
-        subtitle="Acompanhamos cada projeto do planeamento à entrega, garantindo qualidade, segurança e cumprimento dos prazos."
+        eyebrow={t("servicosPage.eyebrow")}
+        title={t("servicosPage.title")}
+        subtitle={t("servicosPage.subtitle")}
       />
 
       <section className="container-pro py-20">
@@ -111,7 +114,7 @@ function ServicosPage() {
             to="/contactos"
             className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-8 py-4 text-sm font-semibold shadow-elegant hover:scale-[1.03] transition-smooth"
           >
-            Solicitar Orçamento <ArrowRight size={16} />
+            {t("hero.btnQuote")} <ArrowRight size={16} />
           </Link>
         </div>
       </section>

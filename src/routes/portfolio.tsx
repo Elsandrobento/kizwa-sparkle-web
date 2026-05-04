@@ -3,7 +3,6 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { useI18n } from "@/lib/I18nContext";
 import { MapPin } from "lucide-react";
-import { PageHero } from "@/components/site/PageHero";
 import biblio1 from "@/assets/proj-biblioteca-1.jpg";
 import biblio2 from "@/assets/proj-biblioteca-2.jpg";
 import biblio3 from "@/assets/proj-biblioteca-3.jpg";

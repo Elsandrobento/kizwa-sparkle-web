@@ -35,7 +35,7 @@ export const Route = createRootRoute({
           "Kizwa Valongo: construção civil, fiscalização de obras, transportes, instalações elétricas e AVAC em Angola. Sede no Kuito, Bié.",
       },
       { name: "author", content: "Kizwa Valongo" },
-      { property: "og:title", content: "Kizwa Valongo — Construção e Serviços" },
+      { property: "og:title", content: "Kizwa Valongo — Construção, Fiscalização e Serviços | Kuito, Bié" },
       {
         property: "og:description",
         content:
@@ -43,6 +43,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Kizwa Valongo — Construção, Fiscalização e Serviços | Kuito, Bié" },
+      { name: "description", content: "Kizwa Valongo Digital Showcase is a modern, responsive website for Kizwa Valongo." },
+      { property: "og:description", content: "Kizwa Valongo Digital Showcase is a modern, responsive website for Kizwa Valongo." },
+      { name: "twitter:description", content: "Kizwa Valongo Digital Showcase is a modern, responsive website for Kizwa Valongo." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/9yFSWZOJ49hrabrg0EA3E3zpvfu2/social-images/social-1777892970090-KIZWA_VALONGO-_LOGOTIPO_1.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/9yFSWZOJ49hrabrg0EA3E3zpvfu2/social-images/social-1777892970090-KIZWA_VALONGO-_LOGOTIPO_1.webp" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),

@@ -1,461 +1,293 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Building2,
-  HardHat,
-  Truck,
-  Wrench,
-  Droplets,
-  ClipboardCheck,
-  ShieldCheck,
-  Award,
-  Users,
-  Phone,
-  Quote,
-  CheckCircle2,
-  Play,
-  Hammer,
-  Ruler,
-  PaintBucket,
-} from "lucide-react";
+import { ArrowRight, CheckCircle, ChevronRight, Facebook, Instagram, Phone, Play, Plus, Twitter } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { whatsappUrl, SITE } from "@/lib/site";
-import heroWorker from "@/assets/hero-worker.jpg";
-import aboutImg from "@/assets/about-experience.jpg";
-import ctaBanner from "@/assets/cta-banner.jpg";
-import teamImg from "@/assets/team-collab.jpg";
-import projBiblio from "@/assets/proj-biblioteca-1.jpg";
-import projResid from "@/assets/proj-residencia-1.jpg";
-import projZap from "@/assets/proj-zap-1.jpg";
-import projEscola from "@/assets/proj-escola-1.jpg";
+import { Progress } from "@/components/ui/progress";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Kizwa Valongo — Construção Civil & Serviços | Kuito, Bié" },
-      {
-        name: "description",
-        content:
-          "Construção civil, fiscalização, transportes e serviços técnicos em Angola. Solidez, qualidade e prazos cumpridos. Solicite o seu orçamento.",
-      },
-      { property: "og:title", content: "Kizwa Valongo — Construção e Serviços" },
-      {
-        property: "og:description",
-        content: "Soluções integradas em construção e infraestrutura no Bié, Angola.",
-      },
-      { property: "og:image", content: heroWorker },
-    ],
-  }),
   component: HomePage,
 });
 
-const services = [
-  { icon: Building2, title: "Construção Civil", desc: "Edifícios residenciais, comerciais e públicos chave-na-mão.", num: "01" },
-  { icon: ClipboardCheck, title: "Fiscalização", desc: "Acompanhamento técnico de obras e controlo de qualidade.", num: "02" },
-  { icon: Ruler, title: "Projeto & Engenharia", desc: "Conceção, estudos e licenciamento de projetos.", num: "03" },
-  { icon: Wrench, title: "AVAC & Instalações", desc: "Climatização, eletricidade e instalações especiais.", num: "04" },
-  { icon: Droplets, title: "Águas & Saneamento", desc: "Redes de abastecimento, drenagens e saneamento.", num: "05" },
-  { icon: Truck, title: "Logística & Transportes", desc: "Transporte de mercadorias e equipamentos.", num: "06" },
+const SERVICES = [
+  { id: "01", title: "Commercial Construction", icon: "🏢", desc: "Build state of the art commercial buildings." },
+  { id: "02", title: "Residential Construction", icon: "🏠", desc: "Crafting beautiful, robust homes for families." },
+  { id: "03", title: "Architecture Design", icon: "✏️", desc: "Innovative and sustainable architectural designs." },
+  { id: "04", title: "Building Renovation", icon: "🔨", desc: "Transform and upgrade existing structures." },
 ];
 
-const stats = [
-  { value: "120+", label: "Projetos Concluídos" },
-  { value: "15+", label: "Anos de Experiência" },
-  { value: "80+", label: "Clientes Satisfeitos" },
-  { value: "40+", label: "Profissionais" },
+const SKILLS = [
+  { label: "Architecture Design", value: 95 },
+  { label: "Construction", value: 85 },
+  { label: "Interior Design", value: 90 },
 ];
 
-const process = [
-  { num: "01", icon: Phone, title: "Consulta", desc: "Ouvimos as suas necessidades e analisamos o local." },
-  { num: "02", icon: Ruler, title: "Planeamento", desc: "Desenhamos o projeto técnico e o orçamento detalhado." },
-  { num: "03", icon: Hammer, title: "Execução", desc: "Equipa especializada constrói com rigor e segurança." },
-  { num: "04", icon: PaintBucket, title: "Entrega", desc: "Inspeção final, acabamentos e entrega chave-na-mão." },
+const PROJECTS = [
+  { id: 1, title: "Modern Building", cat: "Construction", img: "/images/valongo_3.jpg" },
+  { id: 2, title: "Luxury Villa", cat: "Residential", img: "/images/valongo_4.jpg" },
+  { id: 3, title: "Office Complex", cat: "Commercial", img: "/images/valongo_5.jpg" },
+  { id: 4, title: "Public Library", cat: "Architecture", img: "/images/valongo_1.jpg" },
 ];
 
-const projects = [
-  { img: projBiblio, cat: "Edifícios Públicos", title: "Biblioteca Municipal do Kuito" },
-  { img: projZap, cat: "Comercial", title: "Loja ZAP — Bié" },
-  { img: projResid, cat: "Residencial", title: "Residência Privada" },
-  { img: projEscola, cat: "Educação", title: "Escola do Andulo" },
-];
-
-const testimonials = [
-  {
-    name: "Eng.º António Cassoma",
-    role: "Cliente Institucional",
-    text: "A Kizwa Valongo entregou a obra dentro do prazo e com qualidade acima do esperado. Equipa muito profissional.",
-  },
-  {
-    name: "Maria Tchipuca",
-    role: "Cliente Privada",
-    text: "Excelente acompanhamento desde o projeto até à entrega. Recomendo vivamente para qualquer obra.",
-  },
-  {
-    name: "Dr. José Ndalu",
-    role: "Empresa Comercial",
-    text: "Profissionalismo, transparência e cumprimento de prazos. Voltaremos a contar com a Kizwa.",
-  },
-];
-
-const features = [
-  "Engenheiros e técnicos certificados",
-  "Materiais de alta qualidade",
-  "Cumprimento rigoroso de prazos",
-  "Segurança e normas internacionais",
+const TEAM = [
+  { name: "John Doe", role: "Chief Architect", img: "/images/valongo_2.jpg" },
+  { name: "Jane Smith", role: "Project Manager", img: "/images/valongo_3.jpg" },
+  { name: "Mike Johnson", role: "Lead Engineer", img: "/images/valongo_4.jpg" },
 ];
 
 function HomePage() {
+  const [activeProject, setActiveProject] = useState(1);
+
   return (
     <SiteLayout>
-      {/* ============ HERO ============ */}
-      <section className="relative min-h-screen bg-ink overflow-hidden flex items-center">
-        {/* bg image */}
-        <div className="absolute inset-0">
-          <img
-            src={heroWorker}
-            alt="Construção Kizwa Valongo"
-            className="w-full h-full object-cover object-right opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
-        </div>
-
-        {/* decorative grid */}
-        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
-
-        <div className="container-pro relative z-10 pt-32 pb-20">
-          <div className="max-w-3xl">
-            <div className="eyebrow mb-6 animate-fade-up">Construímos o Futuro de Angola</div>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight animate-fade-up delay-100">
-              Soluções <span className="text-primary">Sólidas</span><br />
-              Em Construção<br />
-              & Serviços.
+      {/* 1. HERO SECTION */}
+      <section className="relative w-full h-[600px] lg:h-[800px] flex flex-col lg:flex-row overflow-hidden">
+        {/* Left Side (Dark Green Pattern) */}
+        <div className="lg:w-1/2 h-full bg-primary relative flex items-center p-8 lg:p-20 z-10">
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent" />
+          <div className="relative z-10 max-w-xl">
+            <span className="text-white/80 uppercase tracking-[0.3em] font-bold text-sm mb-4 block">We Are Valongo Company</span>
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-display font-black text-white leading-[1.1] mb-8">
+              CREATE THE BUILDING YOU WANT HERE
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-white/70 max-w-xl leading-relaxed animate-fade-up delay-200">
-              A Kizwa Valongo é uma referência em construção civil, fiscalização e serviços
-              técnicos em Angola. Qualidade, rigor e compromisso em cada obra.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4 animate-fade-up delay-300">
-              <Link to="/contactos" className="btn-primary">
-                Pedir Orçamento <ArrowRight size={16} />
+            <div className="flex flex-wrap gap-6 items-center">
+              <Link to="/portfolio" className="bg-ink text-white font-bold uppercase text-xs tracking-[0.2em] px-8 py-4 flex items-center gap-2 hover:bg-white hover:text-ink transition-all">
+                Explore Projects <ArrowRight size={16} />
               </Link>
-              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                <Play size={14} className="fill-current" /> Falar Connosco
-              </a>
+              <button className="flex items-center gap-3 text-white font-bold uppercase text-xs tracking-widest hover:text-ink transition-colors">
+                <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center">
+                  <Play size={16} className="ml-1" />
+                </div>
+                Watch Video
+              </button>
             </div>
-          </div>
-
-          {/* hero floating card */}
-          <div className="hidden lg:block absolute right-8 bottom-24 w-72 rounded-2xl bg-primary p-6 text-primary-foreground shadow-elegant animate-float-slow">
-            <div className="flex items-center gap-4 mb-4">
-              <Award size={36} />
-              <div>
-                <div className="text-3xl font-display font-black">15+</div>
-                <div className="text-xs uppercase tracking-widest opacity-80">Anos de Mercado</div>
-              </div>
-            </div>
-            <p className="text-sm opacity-90">Compromisso com a excelência em todas as obras que entregamos.</p>
           </div>
         </div>
-
-        {/* bottom strip */}
-        <div className="absolute bottom-0 inset-x-0 bg-primary py-5 z-10">
-          <div className="container-pro flex flex-wrap items-center justify-between gap-4 text-primary-foreground">
-            <div className="flex items-center gap-3 font-display font-bold uppercase text-sm tracking-wider">
-              <ShieldCheck size={20} /> Segurança em Primeiro Lugar
-            </div>
-            <div className="flex items-center gap-3 font-display font-bold uppercase text-sm tracking-wider">
-              <Award size={20} /> Qualidade Certificada
-            </div>
-            <div className="flex items-center gap-3 font-display font-bold uppercase text-sm tracking-wider">
-              <Users size={20} /> Equipa Especializada
-            </div>
-            <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-3 font-display font-black text-sm">
-              <Phone size={20} /> {SITE.phone}
-            </a>
+        {/* Right Side (Image Slider) */}
+        <div className="lg:w-1/2 h-full relative hidden lg:block">
+          <img src="/images/valongo_1.jpg" alt="Construction" className="absolute inset-0 w-full h-full object-cover" />
+          {/* Decorative Box */}
+          <div className="absolute bottom-0 left-0 bg-ink p-10 text-white w-72 transform -translate-x-1/2">
+            <div className="text-5xl font-black font-display text-primary mb-2">15+</div>
+            <div className="text-sm font-bold uppercase tracking-widest">Years of Experience</div>
           </div>
         </div>
       </section>
 
-      {/* ============ ABOUT ============ */}
-      <section className="py-24 md:py-32 bg-background">
+      {/* 2. ABOUT SECTION */}
+      <section className="py-24 bg-white relative">
         <div className="container-pro grid lg:grid-cols-2 gap-16 items-center">
-          {/* image side */}
+          {/* Images */}
           <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-card-soft">
-              <img src={aboutImg} alt="Engenheiro Kizwa" className="w-full h-[520px] object-cover" loading="lazy" />
-            </div>
-            <div className="absolute -bottom-8 -right-4 lg:-right-8 bg-ink text-white rounded-2xl p-6 shadow-elegant w-56">
-              <div className="text-5xl font-display font-black text-primary">15+</div>
-              <div className="text-sm uppercase tracking-widest mt-2 text-white/70">Anos de excelência em obras</div>
-            </div>
-            <div className="absolute -top-6 -left-6 hidden md:flex w-32 h-32 rounded-full bg-primary/10 items-center justify-center">
-              <Hammer className="text-primary" size={48} />
-            </div>
+            <img src="/images/valongo_2.jpg" alt="About" className="w-4/5 h-auto rounded-none shadow-xl relative z-10" />
+            <img src="/images/valongo_3.jpg" alt="About 2" className="w-3/5 h-auto rounded-none shadow-2xl absolute -bottom-10 -right-0 border-8 border-white z-20" />
           </div>
-
-          {/* text side */}
-          <div>
-            <div className="eyebrow mb-5">Sobre a Kizwa Valongo</div>
-            <h2 className="section-title text-foreground">
-              Construímos com <span className="text-primary">qualidade,</span><br />
-              rigor e responsabilidade.
+          {/* Text */}
+          <div className="lg:pl-10">
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> About Our Company
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight mb-6">
+              We Are Building Everything That You Need
             </h2>
-            <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-              Sediada em Kuito — Bié, a Kizwa Valongo é uma empresa angolana de construção civil
-              e prestação de serviços técnicos. Atuamos em obras públicas e privadas com uma
-              equipa multidisciplinar focada em entregar resultados duradouros.
+            <p className="text-ink/70 leading-relaxed mb-8">
+              Kizwa Valongo delivers high-quality construction and engineering services. Our multidisciplinary team is focused on delivering excellence and exceeding client expectations on every project.
             </p>
+            <div className="space-y-4 mb-10">
+              <div className="flex items-start gap-4">
+                <CheckCircle className="text-primary mt-1" size={24} />
+                <div>
+                  <h4 className="font-bold text-ink text-lg">Highly Professional Staff</h4>
+                  <p className="text-ink/60 text-sm">Our team consists of certified engineers and experienced workers.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <CheckCircle className="text-primary mt-1" size={24} />
+                <div>
+                  <h4 className="font-bold text-ink text-lg">100% Satisfaction Guarantee</h4>
+                  <p className="text-ink/60 text-sm">We ensure top quality materials and strict adherence to deadlines.</p>
+                </div>
+              </div>
+            </div>
+            <Link to="/sobre" className="bg-primary text-primary-foreground font-bold uppercase text-xs tracking-widest px-8 py-4 inline-flex items-center gap-2 hover:bg-ink hover:text-white transition-all">
+              Discover More <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <div className="grid sm:grid-cols-2 gap-3 mt-8">
-              {features.map((f) => (
-                <div key={f} className="flex items-start gap-3">
-                  <CheckCircle2 className="text-primary mt-0.5 shrink-0" size={20} />
-                  <span className="text-foreground font-medium">{f}</span>
+      {/* 3. SERVICES SECTION */}
+      <section className="py-24 bg-gray-50">
+        <div className="container-pro">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> What We Offer <span className="w-12 h-[2px] bg-primary"></span>
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight">
+              We Provide Best Services
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {SERVICES.map((s) => (
+              <div key={s.id} className="group bg-white p-10 relative overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <div className="text-6xl mb-6 grayscale group-hover:grayscale-0 transition-all">{s.icon}</div>
+                <h3 className="text-xl font-bold font-display text-ink mb-4 relative z-10 group-hover:text-white transition-colors duration-500">{s.title}</h3>
+                <p className="text-ink/60 relative z-10 group-hover:text-white/80 transition-colors duration-500">{s.desc}</p>
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
+                
+                {/* Plus Icon Link */}
+                <Link to="/servicos" className="absolute bottom-6 right-6 w-12 h-12 bg-gray-100 group-hover:bg-white flex items-center justify-center rounded-full z-10 hover:scale-110 transition-transform">
+                  <Plus size={20} className="text-ink" />
+                </Link>
+                
+                {/* Background Number */}
+                <div className="absolute -top-4 -right-4 text-8xl font-black text-gray-50 group-hover:text-white/10 transition-colors z-0">
+                  {s.id}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SKILLS SECTION */}
+      <section className="py-24 bg-white">
+        <div className="container-pro grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> Our Skills
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight mb-6">
+              We Are the Best Construction Company
+            </h2>
+            <p className="text-ink/70 leading-relaxed mb-8">
+              We bring technical excellence and vast experience to every project, ensuring robust and aesthetically pleasing results.
+            </p>
+            <div className="space-y-8">
+              {SKILLS.map((skill) => (
+                <div key={skill.label}>
+                  <div className="flex justify-between font-bold text-ink mb-2">
+                    <span>{skill.label}</span>
+                    <span>{skill.value}%</span>
+                  </div>
+                  <Progress value={skill.value} className="h-2 bg-gray-200" indicatorColor="bg-primary" />
                 </div>
               ))}
             </div>
-
-            <div className="mt-10 flex items-center gap-6">
-              <Link to="/sobre" className="btn-primary">
-                Saber Mais <ArrowRight size={16} />
-              </Link>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Phone className="text-primary" size={20} />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Ligue-nos</div>
-                  <a href={`tel:${SITE.phoneRaw}`} className="font-display font-bold text-foreground">{SITE.phone}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ SERVICES ============ */}
-      <section className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] bg-[linear-gradient(to_right,black_1px,transparent_1px),linear-gradient(to_bottom,black_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="container-pro relative">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
-            <div className="max-w-2xl">
-              <div className="eyebrow mb-5">Os Nossos Serviços</div>
-              <h2 className="section-title text-foreground">
-                Soluções completas <span className="text-primary">para o seu projeto.</span>
-              </h2>
-            </div>
-            <Link to="/servicos" className="btn-primary">
-              Ver Todos <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.title}
-                  className="group relative bg-card rounded-3xl p-8 shadow-card-soft hover:shadow-elegant transition-smooth border border-border/50 hover:border-primary/30 overflow-hidden"
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <div className="absolute top-6 right-6 font-display font-black text-6xl text-primary/10 group-hover:text-primary/20 transition-colors">
-                    {s.num}
-                  </div>
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 group-hover:bg-primary flex items-center justify-center mb-6 transition-smooth">
-                    <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={28} />
-                  </div>
-                  <h3 className="font-display font-bold text-2xl text-foreground mb-3">{s.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <Link
-                    to="/servicos"
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary group-hover:gap-3 transition-all"
-                  >
-                    Saber Mais <ArrowRight size={14} />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ STATS / CTA BANNER ============ */}
-      <section className="relative py-24 md:py-32 bg-ink overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={ctaBanner} alt="" className="w-full h-full object-cover opacity-25" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/70" />
-        </div>
-        <div className="container-pro relative z-10">
-          <div className="grid lg:grid-cols-4 gap-10 mb-16">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center lg:text-left border-l-2 border-primary pl-6">
-                <div className="font-display font-black text-5xl md:text-6xl text-white">{s.value}</div>
-                <div className="mt-3 text-sm uppercase tracking-widest text-white/60">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-white/10 pt-12 grid lg:grid-cols-2 gap-8 items-center">
-            <h2 className="section-title text-white max-w-xl">
-              Pronto para iniciar a sua <span className="text-primary">próxima obra?</span>
-            </h2>
-            <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link to="/contactos" className="btn-primary">
-                Pedir Orçamento <ArrowRight size={16} />
-              </Link>
-              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                WhatsApp <Phone size={14} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ PROCESS ============ */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="container-pro">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="eyebrow mb-5 justify-center" style={{ display: "inline-flex" }}>O Nosso Processo</div>
-            <h2 className="section-title text-foreground">
-              Como <span className="text-primary">trabalhamos</span> consigo.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            {process.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <div key={p.num} className="relative">
-                  <div className="bg-secondary rounded-3xl p-8 hover:bg-primary group transition-smooth h-full">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="w-16 h-16 rounded-2xl bg-card group-hover:bg-white/15 flex items-center justify-center transition-smooth">
-                        <Icon className="text-primary group-hover:text-white transition-colors" size={28} />
-                      </div>
-                      <span className="font-display font-black text-4xl text-primary/30 group-hover:text-white/40 transition-colors">
-                        {p.num}
-                      </span>
-                    </div>
-                    <h3 className="font-display font-bold text-xl text-foreground group-hover:text-white mb-3 transition-colors">
-                      {p.title}
-                    </h3>
-                    <p className="text-muted-foreground group-hover:text-white/80 transition-colors leading-relaxed">{p.desc}</p>
-                  </div>
-                  {i < process.length - 1 && (
-                    <ArrowRight className="hidden lg:block absolute top-1/2 -right-4 -translate-y-1/2 text-primary/30 z-10" size={24} />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ PROJECTS ============ */}
-      <section className="py-24 md:py-32 bg-secondary">
-        <div className="container-pro">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
-            <div className="max-w-2xl">
-              <div className="eyebrow mb-5">Portfólio</div>
-              <h2 className="section-title text-foreground">
-                Projetos que falam por <span className="text-primary">si.</span>
-              </h2>
-            </div>
-            <Link to="/portfolio" className="btn-primary">
-              Ver Portfólio <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projects.map((p) => (
-              <Link
-                to="/portfolio"
-                key={p.title}
-                className="group relative rounded-3xl overflow-hidden shadow-card-soft hover:shadow-elegant transition-smooth aspect-[3/4] block"
-              >
-                <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-smooth" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <span className="inline-block px-3 py-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-widest mb-3">
-                    {p.cat}
-                  </span>
-                  <h3 className="font-display font-bold text-xl text-white">{p.title}</h3>
-                  <div className="mt-4 inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 group-hover:gap-3 transition-all">
-                    Ver Projeto <ArrowRight size={14} />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ TEAM CTA ============ */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="container-pro grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="eyebrow mb-5">A Nossa Equipa</div>
-            <h2 className="section-title text-foreground">
-              Profissionais comprometidos com <span className="text-primary">a sua obra.</span>
-            </h2>
-            <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-              Engenheiros, arquitetos e técnicos especializados que trabalham juntos para
-              transformar a sua visão em realidade — com segurança, qualidade e dentro do prazo.
-            </p>
-            <div className="mt-10 grid sm:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <HardHat className="text-primary" size={22} />
-                </div>
-                <div>
-                  <div className="font-display font-bold text-foreground">Equipa Certificada</div>
-                  <p className="text-sm text-muted-foreground mt-1">Profissionais com formação técnica superior.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="text-primary" size={22} />
-                </div>
-                <div>
-                  <div className="font-display font-bold text-foreground">Garantia & Segurança</div>
-                  <p className="text-sm text-muted-foreground mt-1">Padrões internacionais em cada projeto.</p>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="relative">
-            <img src={teamImg} alt="Equipa Kizwa Valongo" className="rounded-3xl shadow-card-soft w-full h-[520px] object-cover" loading="lazy" />
-            <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground rounded-2xl p-6 shadow-elegant max-w-[240px]">
-              <Users size={28} className="mb-3" />
-              <div className="font-display font-black text-3xl">40+</div>
-              <div className="text-sm uppercase tracking-widest opacity-90 mt-1">Profissionais dedicados</div>
-            </div>
+            <img src="/images/valongo_4.jpg" alt="Skills" className="w-full h-[500px] object-cover" />
+            <div className="absolute inset-0 bg-primary/20" />
           </div>
         </div>
       </section>
 
-      {/* ============ TESTIMONIALS ============ */}
-      <section className="py-24 md:py-32 bg-ink relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="container-pro relative z-10">
+      {/* 5. TESTIMONIALS SECTION */}
+      <section className="flex flex-col lg:flex-row min-h-[600px]">
+        <div className="lg:w-1/2 bg-ink p-12 lg:p-24 flex flex-col justify-center">
+          <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4 mb-4">
+            <span className="w-12 h-[2px] bg-primary"></span> What Client's Say
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-display font-black text-white leading-tight mb-12">
+            Trusted By Our Clients
+          </h2>
+          <div className="relative">
+            <div className="text-primary text-6xl font-serif absolute -top-8 -left-4 opacity-50">"</div>
+            <p className="text-xl text-white/90 italic relative z-10 leading-relaxed mb-8">
+              Kizwa Valongo exceeded our expectations. Their attention to detail and commitment to quality is unmatched. The project was completed on time and within budget.
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center font-bold text-ink">
+                AC
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-lg">Antonio Cassoma</h4>
+                <span className="text-primary text-sm">CEO, Valongo Corp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="lg:w-1/2 relative min-h-[400px]">
+          <img src="/images/valongo_5.jpg" alt="Testimonial Background" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+      </section>
+
+      {/* 6. PROJECTS SECTION (Horizontal Accordion) */}
+      <section className="py-24 bg-white">
+        <div className="container-pro">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
+            <div>
+              <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4 mb-4">
+                <span className="w-12 h-[2px] bg-primary"></span> Our Latest Projects
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight">
+                Explore Our Recent Work
+              </h2>
+            </div>
+            <Link to="/portfolio" className="bg-primary text-primary-foreground font-bold uppercase text-xs tracking-widest px-8 py-4 inline-flex items-center gap-2 hover:bg-ink hover:text-white transition-all">
+              View All Projects <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          {/* Custom Horizontal Accordion implementation */}
+          <div className="flex flex-col lg:flex-row h-[600px] gap-2">
+            {PROJECTS.map((proj) => (
+              <div
+                key={proj.id}
+                className={`relative overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${activeProject === proj.id ? "lg:flex-[3] flex-1" : "lg:flex-1 h-24 lg:h-auto"}`}
+                onClick={() => setActiveProject(proj.id)}
+              >
+                <img src={proj.img} alt={proj.title} className="absolute inset-0 w-full h-full object-cover" />
+                <div className={`absolute inset-0 transition-opacity duration-500 ${activeProject === proj.id ? "bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" : "bg-ink/60 hover:bg-ink/40"}`} />
+                
+                {activeProject === proj.id ? (
+                  <div className="absolute bottom-0 left-0 p-8 w-full animate-fade-in delay-200">
+                    <span className="text-primary font-bold tracking-widest uppercase text-xs mb-2 block">{proj.cat}</span>
+                    <h3 className="text-white text-3xl font-display font-black mb-4">{proj.title}</h3>
+                    <Link to="/portfolio" className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-ink hover:bg-white transition-colors">
+                      <ArrowRight size={20} />
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 flex lg:flex-col items-center justify-center lg:justify-end p-6">
+                    <h3 className="text-white text-xl font-bold lg:-rotate-90 whitespace-nowrap lg:origin-left lg:mb-20 lg:translate-x-4">{proj.title}</h3>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. EXPERT TEAM */}
+      <section className="py-24 bg-gray-50">
+        <div className="container-pro">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="eyebrow mb-5">Testemunhos</div>
-            <h2 className="section-title text-white">
-              O que dizem os nossos <span className="text-primary">clientes.</span>
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> Our Expert Team <span className="w-12 h-[2px] bg-primary"></span>
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight">
+              Meet Our Professionals
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-smooth">
-                <Quote className="text-primary mb-6" size={36} />
-                <p className="text-white/80 leading-relaxed mb-8">"{t.text}"</p>
-                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-display font-bold">
-                    {t.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {TEAM.map((member) => (
+              <div key={member.name} className="group relative bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <div className="relative h-96 overflow-hidden">
+                  <img src={member.img} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {/* Social links overlay */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur p-3 flex justify-center gap-4 translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500 z-10">
+                    <a href="#" className="text-ink hover:text-primary"><Facebook size={18} /></a>
+                    <a href="#" className="text-ink hover:text-primary"><Twitter size={18} /></a>
+                    <a href="#" className="text-ink hover:text-primary"><Instagram size={18} /></a>
                   </div>
-                  <div>
-                    <div className="font-display font-bold text-white">{t.name}</div>
-                    <div className="text-xs uppercase tracking-widest text-white/50">{t.role}</div>
-                  </div>
+                </div>
+                <div className="p-6 text-center border-t border-gray-100 relative z-20 bg-white">
+                  <h3 className="font-display font-bold text-2xl text-ink mb-1">{member.name}</h3>
+                  <p className="text-primary text-sm font-bold uppercase tracking-widest">{member.role}</p>
                 </div>
               </div>
             ))}
@@ -463,21 +295,96 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ FINAL CTA ============ */}
-      <section className="py-20 bg-primary">
-        <div className="container-pro flex flex-wrap items-center justify-between gap-8">
+      {/* 8. FAQ SECTION */}
+      <section className="py-24 bg-white">
+        <div className="container-pro grid lg:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <img src="/images/valongo_1.jpg" alt="FAQ" className="w-full h-[600px] object-cover rounded-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-primary rounded-full flex items-center justify-center animate-pulse">
+              <Play size={32} className="text-white ml-2" />
+            </div>
+          </div>
           <div>
-            <h2 className="font-display font-black text-3xl md:text-5xl text-primary-foreground max-w-2xl">
-              Vamos construir juntos o seu próximo projeto.
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> General FAQ
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight mb-10">
+              Frequently Asked Questions
+            </h2>
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {[
+                { q: "How much does a construction project cost?", a: "Costs vary depending on scope, materials, and timeline. We provide detailed estimates after initial consultation." },
+                { q: "Do you handle building permits?", a: "Yes, our team handles all necessary paperwork and permits required by local authorities." },
+                { q: "How long will the project take?", a: "We establish a strict timeline during the planning phase and are committed to meeting our deadlines." },
+                { q: "What safety measures are in place?", a: "We adhere strictly to international safety standards, with dedicated safety officers on every site." }
+              ].map((faq, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="border border-gray-200 bg-white px-6 py-2 shadow-sm data-[state=open]:border-primary transition-colors">
+                  <AccordionTrigger className="text-left font-bold text-ink hover:text-primary hover:no-underline py-4 text-lg">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-ink/70 leading-relaxed pb-6">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. CONTACT BANNER (Orange/Primary Glow) */}
+      <section className="bg-orange-500 py-16 relative overflow-hidden">
+        {/* We use an inline style or a tailwind class for the specific orange color, let's use a warm color */}
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_right,_var(--tw-gradient-stops))] from-white to-transparent" />
+        <div className="container-pro relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="text-3xl lg:text-5xl font-display font-black text-white mb-2">
+              Looking For The Best Construction Company?
+            </h2>
+            <p className="text-white/80 text-lg">Contact us today to get a free quote for your next project.</p>
+          </div>
+          <Link to="/contactos" className="bg-ink text-white font-bold uppercase text-xs tracking-widest px-8 py-5 flex items-center gap-2 hover:bg-white hover:text-ink transition-all shrink-0">
+            Talk To Us <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* 10. BLOG SECTION */}
+      <section className="py-24 bg-white">
+        <div className="container-pro">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-4 mb-4">
+              <span className="w-12 h-[2px] bg-primary"></span> Latest News <span className="w-12 h-[2px] bg-primary"></span>
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-ink leading-tight">
+              Read Our Latest Blog
             </h2>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <Link to="/contactos" className="inline-flex items-center gap-2.5 bg-ink text-white font-bold uppercase text-xs tracking-widest px-7 py-4 rounded-full hover:bg-foreground transition-smooth">
-              Pedir Orçamento <ArrowRight size={16} />
-            </Link>
-            <a href={`tel:${SITE.phoneRaw}`} className="inline-flex items-center gap-2.5 bg-white text-ink font-bold uppercase text-xs tracking-widest px-7 py-4 rounded-full hover:bg-foreground hover:text-white transition-smooth">
-              <Phone size={14} /> {SITE.phone}
-            </a>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="group border border-gray-100 hover:shadow-xl transition-all">
+                <div className="relative h-64 overflow-hidden">
+                  <img src={`/images/valongo_${i+1}.jpg`} alt="Blog" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute top-4 left-4 bg-primary text-primary-foreground font-bold text-center p-2 min-w-[60px]">
+                    <div className="text-2xl">24</div>
+                    <div className="text-xs uppercase tracking-widest">May</div>
+                  </div>
+                </div>
+                <div className="p-8 bg-white relative">
+                  <div className="flex items-center gap-4 text-xs text-ink/50 font-bold uppercase tracking-widest mb-4">
+                    <span className="flex items-center gap-1"><span className="text-primary">👤</span> By Admin</span>
+                    <span className="flex items-center gap-1"><span className="text-primary">💬</span> 2 Comments</span>
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-ink mb-4 group-hover:text-primary transition-colors">
+                    Best Practices for Sustainable Construction
+                  </h3>
+                  <Link to="/" className="inline-flex items-center gap-2 text-primary font-bold uppercase text-xs tracking-widest hover:gap-3 transition-all">
+                    Read More <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

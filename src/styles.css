@@ -170,9 +170,78 @@
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
 .animate-fade-up { animation: fade-up 800ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 .animate-fade-in { animation: fade-in 800ms ease both; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
+
+/* Konstic-inspired utilities */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--primary);
+  display: inline-block;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.875rem, 3.2vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  transition: all var(--transition-smooth);
+  box-shadow: 0 12px 30px -10px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px color-mix(in oklab, var(--primary) 70%, transparent); }
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  transition: all var(--transition-smooth);
+}
+.btn-outline-light:hover { background: white; color: var(--ink); border-color: white; }

@@ -29,95 +29,109 @@ function AboutPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Sobre Nós"
-        title="Construímos com integridade e visão de longo prazo."
-        subtitle="A Kizwa Valongo nasceu para servir Angola com soluções de engenharia confiáveis, criando infraestrutura que dura gerações."
+        eyebrow="Quem Somos"
+        title="Construímos com integridade e visão estratégica."
+        subtitle="A Kizwa Valongo nasceu para servir Angola com soluções de engenharia que combinam rigor técnico e compromisso social."
       />
 
-      <section className="container-pro py-20 grid lg:grid-cols-2 gap-14 items-center">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">A nossa história</p>
-          <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold text-balance">
-            Uma empresa angolana, enraizada no Bié, com visão nacional.
-          </h2>
-          <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
-            <p>
-              O <strong className="text-foreground">Grupo Kizwa Valongo, Lda</strong> é uma empresa de direito angolano, com sede na província do Bié, município do Kuito, e domicílio fiscal NIF 5002196310, registada no Cartório Notarial da Comarca do Bié.
-            </p>
-            <p>
-              Atuamos no ramo da construção civil, manutenção completa de infraestrutura e transportes, oferecendo uma gama diversificada de serviços a órgãos estatais, instituições e agentes privados em todo o território nacional.
-            </p>
-            <p>
-              O nosso compromisso é entregar valor real através de qualidade técnica, prazos cumpridos e relações duradouras com os nossos clientes e parceiros.
-            </p>
+      <section className="container-pro py-24 md:py-32">
+        <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="order-2 lg:order-1">
+            <p className="text-primary font-black uppercase tracking-[0.4em] text-[10px] mb-6">Nossa Identidade</p>
+            <h2 className="font-display text-4xl md:text-6xl font-black text-ink leading-tight">
+              Uma empresa angolana, <br />
+              focada no <span className="text-primary">futuro.</span>
+            </h2>
+            <div className="mt-8 space-y-6 text-ink/50 leading-relaxed text-lg">
+              <p>
+                O <strong className="text-ink">Grupo Kizwa Valongo, Lda</strong> é uma referência de excelência no setor da construção civil e prestação de serviços em Angola.
+              </p>
+              <p>
+                Com sede estratégica no Kuito, província do Bié, mobilizamos equipas qualificadas para intervir em projetos de infraestrutura, logística e manutenção em todo o território nacional.
+              </p>
+              <p>
+                Nossa filosofia assenta na transparência, no rigor técnico e na criação de parcerias sólidas que impulsionam o desenvolvimento económico das comunidades onde atuamos.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="relative">
-          <img
-            src={about}
-            alt="Infraestrutura"
-            className="rounded-2xl shadow-elegant w-full h-auto"
-            loading="lazy"
-            width={1600}
-            height={900}
-          />
-          <div className="absolute -bottom-6 -left-6 bg-card rounded-2xl shadow-card-soft border border-border p-5 max-w-[230px] hidden md:block">
-            <p className="font-display text-3xl font-bold text-primary">NIF</p>
-            <p className="text-sm text-muted-foreground mt-1">5002196310 — Cartório Notarial do Bié</p>
+          <div className="order-1 lg:order-2 relative group">
+            <div className="absolute -inset-6 bg-primary/5 rounded-[40px] rotate-2 group-hover:rotate-0 transition-all duration-700" />
+            <img
+              src={about}
+              alt="Infraestrutura Kizwa Valongo"
+              className="relative rounded-[40px] shadow-2xl w-full aspect-square object-cover"
+              loading="lazy"
+            />
+            <div className="absolute -bottom-8 -left-8 bg-ink p-10 rounded-3xl shadow-2xl border border-white/5">
+              <p className="font-display text-4xl font-black text-primary mb-1">10+</p>
+              <p className="text-white/40 text-[10px] uppercase font-black tracking-widest">Anos de Rigor</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* MVV */}
-      <section className="bg-secondary py-20">
-        <div className="container-pro grid md:grid-cols-3 gap-6">
-          {[
-            { icon: Target, title: "Missão", text: "Entregar soluções de engenharia e serviços de excelência, contribuindo para o desenvolvimento sustentável de Angola." },
-            { icon: Eye, title: "Visão", text: "Ser referência nacional em construção civil, fiscalização e infraestrutura, reconhecida pela qualidade e integridade." },
-            { icon: Heart, title: "Valores", text: "Rigor, transparência, segurança, compromisso com o cliente e respeito pelo ambiente e pelas comunidades." },
-          ].map((v) => (
-            <article key={v.title} className="bg-card rounded-2xl p-8 border border-border hover:shadow-elegant transition-smooth">
-              <div className="h-14 w-14 rounded-2xl bg-primary-gradient text-primary-foreground flex items-center justify-center shadow-card-soft">
-                <v.icon size={24} />
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold">{v.title}</h3>
-              <p className="mt-3 text-muted-foreground leading-relaxed">{v.text}</p>
-            </article>
-          ))}
+      {/* MVV SECTION */}
+      <section className="bg-ink py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        <div className="container-pro relative z-10">
+          <div className="grid md:grid-cols-3 gap-10">
+            {[
+              { icon: Target, title: "Missão", text: "Entregar soluções de excelência que superem as expectativas e contribuam para o progresso de Angola." },
+              { icon: Eye, title: "Visão", text: "Ser a empresa de referência nacional em construção e fiscalização, reconhecida pela integridade e inovação." },
+              { icon: Heart, title: "Valores", text: "Ética, segurança, compromisso ambiental e respeito absoluto pelos prazos e pela qualidade técnica." },
+            ].map((v) => (
+              <article key={v.title} className="bg-white/5 backdrop-blur-xl p-12 rounded-[40px] border border-white/10 hover:bg-white/10 transition-all">
+                <div className="h-16 w-16 rounded-2xl bg-primary text-ink flex items-center justify-center shadow-xl mb-8">
+                  <v.icon size={30} />
+                </div>
+                <h3 className="font-display text-2xl font-black text-white mb-4 uppercase tracking-tight">{v.title}</h3>
+                <p className="text-white/40 leading-relaxed text-sm">{v.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* TEAM */}
-      <section className="container-pro py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="grid grid-cols-2 gap-4">
-            <img src={team1} alt="Equipa em obra" className="rounded-2xl object-cover w-full h-72 shadow-card-soft" loading="lazy" />
-            <img src={team2} alt="Assinatura de contrato" className="rounded-2xl object-cover w-full h-72 shadow-card-soft mt-8" loading="lazy" />
+      {/* TEAM & COMMITMENT */}
+      <section className="container-pro py-24 md:py-32">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-2 gap-6 relative">
+            <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl" />
+            <img src={team1} alt="Equipa Kizwa" className="relative rounded-3xl object-cover w-full h-[400px] shadow-2xl" loading="lazy" />
+            <img src={team2} alt="Liderança Kizwa" className="relative rounded-3xl object-cover w-full h-[400px] shadow-2xl mt-12" loading="lazy" />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">A nossa equipa</p>
-            <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold text-balance">
-              Profissionais experientes, comprometidos com a excelência.
+            <p className="text-primary font-black uppercase tracking-[0.4em] text-[10px] mb-6">Capital Humano</p>
+            <h2 className="font-display text-4xl md:text-5xl font-black text-ink leading-tight">
+              Uma equipa de elite <br />
+              para projetos de <span className="text-primary">grande escala.</span>
             </h2>
-            <p className="mt-5 text-muted-foreground leading-relaxed">
-              A nossa equipa reúne engenheiros, técnicos especializados e operacionais com vasta experiência em obras públicas e privadas. Cada projeto é conduzido com criatividade, colaboração próxima com o cliente, foco na qualidade e atenção meticulosa aos detalhes.
+            <p className="mt-8 text-ink/50 leading-relaxed text-lg mb-10">
+              Acreditamos que a engenharia é feita por pessoas. Por isso, investimos continuamente na formação e segurança dos nossos profissionais.
             </p>
-            <ul className="mt-6 space-y-3">
+            <ul className="grid gap-6">
               {[
-                "Criatividade — em todas as etapas, da conceção à execução",
-                "Colaboração — alinhamento total com a visão do cliente",
-                "Qualidade — superamos expectativas em cada entrega",
-                "Detalhe — cada projeto é uma história bem contada",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 text-primary shrink-0" size={20} />
-                  <span>{t}</span>
+                { title: "Rigor Técnico", desc: "Engenheiros com vasta experiência em obras complexas." },
+                { title: "Segurança Total", desc: "Cumprimento estrito de todas as normas de higiene e segurança." },
+                { title: "Foco no Cliente", desc: "Consultoria personalizada em cada fase do projeto." },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-5 group">
+                  <div className="mt-1 h-6 w-6 rounded-full border-2 border-primary flex items-center justify-center group-hover:bg-primary transition-all">
+                    <CheckCircle2 size={12} className="text-primary group-hover:text-ink" />
+                  </div>
+                  <div>
+                    <h4 className="font-black text-ink uppercase tracking-widest text-xs mb-1">{item.title}</h4>
+                    <p className="text-ink/40 text-sm">{item.desc}</p>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
         </div>
       </section>
+    </SiteLayout>
+  );
+}
     </SiteLayout>
   );
 }

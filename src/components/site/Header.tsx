@@ -28,78 +28,92 @@ export function Header() {
   return (
     <header
       className={[
-        "fixed top-0 inset-x-0 z-50 transition-smooth",
+        "fixed top-0 inset-x-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/85 backdrop-blur-lg border-b border-border shadow-card-soft"
-          : "bg-transparent",
+          ? "bg-ink/80 backdrop-blur-xl border-b border-white/10 shadow-lg py-3"
+          : "bg-transparent py-5",
       ].join(" ")}
     >
-      <div className="container-pro flex items-center justify-between h-18 py-3">
-        <Link to="/" className="flex items-center gap-3 group">
-          <img
-            src={logo}
-            alt="Kizwa Valongo"
-            className="h-12 w-12 object-contain"
-            width={48}
-            height={48}
-          />
-          <div className="hidden sm:flex flex-col leading-tight">
-            <span className="font-display font-bold text-base text-ink">KIZWA VALONGO</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Construção · Serviços
-            </span>
+      <div className="container-pro flex items-center justify-between">
+        {/* LOGO */}
+        <Link to="/" className="flex flex-col leading-none group">
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Kizwa Valongo"
+              className="h-10 w-10 object-contain"
+              width={40}
+              height={40}
+            />
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+                KIZWA
+              </span>
+              <span className="font-display font-medium text-[10px] tracking-[0.2em] text-white/60 -mt-0.5">
+                VALONGO
+              </span>
+            </div>
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* NAVIGATION - CENTERED */}
+        <nav className="hidden lg:flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-2 py-1">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-smooth"
-              activeProps={{ className: "text-primary" }}
+              className="px-5 py-2 text-[13px] font-semibold uppercase tracking-wider text-white/70 hover:text-white transition-all rounded-full hover:bg-white/5"
+              activeProps={{ className: "text-white bg-white/10 shadow-sm" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/contactos"
-            className="ml-3 inline-flex items-center justify-center rounded-full bg-primary-gradient text-primary-foreground px-5 py-2.5 text-sm font-semibold shadow-elegant hover:scale-[1.03] transition-smooth"
-          >
-            Solicitar Orçamento
-          </Link>
         </nav>
+
+        {/* WHATSAPP BUTTON - RIGHT */}
+        <div className="hidden lg:flex items-center">
+          <a
+            href="https://wa.me/244923210427"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-ink transition-all shadow-[0_0_20px_rgba(var(--primary),0.2)] hover:shadow-[0_0_30px_rgba(var(--primary),0.4)] hover:scale-105"
+          >
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            WhatsApp
+          </a>
+        </div>
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted transition-smooth"
+          className="lg:hidden p-2 rounded-full text-white bg-white/10 hover:bg-white/20 transition-smooth"
           aria-label="Abrir menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
+      {/* MOBILE MENU */}
       {open && (
-        <div className="lg:hidden bg-background border-t border-border animate-fade-in">
-          <div className="container-pro py-4 flex flex-col gap-1">
+        <div className="lg:hidden fixed inset-x-0 top-[72px] bg-ink/95 backdrop-blur-2xl border-t border-white/10 animate-fade-in shadow-2xl">
+          <div className="container-pro py-8 flex flex-col gap-4">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="px-3 py-3 rounded-md text-base font-medium hover:bg-muted"
-                activeProps={{ className: "text-primary bg-accent/40" }}
+                className="px-4 py-4 rounded-xl text-lg font-bold text-white/80 hover:text-white hover:bg-white/5 transition-all"
+                activeProps={{ className: "text-primary bg-primary/10 border-l-4 border-primary pl-6" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/contactos"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-primary-gradient text-primary-foreground px-5 py-3 text-sm font-semibold"
+            <a
+              href="https://wa.me/244923210427"
+              className="mt-4 flex items-center justify-center gap-3 rounded-2xl bg-primary text-ink px-6 py-5 text-sm font-bold uppercase tracking-widest shadow-xl"
             >
-              Solicitar Orçamento
-            </Link>
+              Falar no WhatsApp
+            </a>
           </div>
         </div>
       )}

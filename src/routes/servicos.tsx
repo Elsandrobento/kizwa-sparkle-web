@@ -74,45 +74,47 @@ function ServicosPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Serviços"
-        title="Soluções completas em engenharia, infraestrutura e logística."
-        subtitle="Acompanhamos cada projeto do planeamento à entrega, garantindo qualidade, segurança e cumprimento dos prazos."
+        eyebrow="O que fazemos"
+        title="Soluções completas para o desenvolvimento de Angola."
+        subtitle="Acompanhamos cada projeto do planeamento à entrega, garantindo rigor técnico e excelência em cada detalhe."
       />
 
-      <section className="container-pro py-20">
-        <div className="grid md:grid-cols-2 gap-6">
+      <section className="container-pro py-24">
+        <div className="grid md:grid-cols-2 gap-8">
           {services.map((s) => (
             <article
               key={s.title}
-              className="group relative bg-card rounded-2xl p-8 border border-border hover:border-primary/40 hover:shadow-elegant hover:-translate-y-1 transition-smooth"
+              className="group relative bg-white rounded-[40px] p-10 border border-border hover:border-primary hover:shadow-2xl hover:-translate-y-2 transition-all"
             >
-              <div className="flex items-start gap-5">
-                <div className="h-14 w-14 shrink-0 rounded-2xl bg-primary-gradient text-primary-foreground flex items-center justify-center shadow-card-soft">
-                  <s.icon size={24} />
+              <div className="flex flex-col md:flex-row items-start gap-8">
+                <div className="h-16 w-16 shrink-0 rounded-2xl bg-ink text-primary flex items-center justify-center shadow-xl group-hover:bg-primary group-hover:text-ink transition-all">
+                  <s.icon size={32} />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-bold">{s.title}</h3>
-                  <p className="mt-2 text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <h3 className="font-display text-2xl font-black text-ink leading-tight mb-4 group-hover:text-primary transition-colors">{s.title}</h3>
+                  <p className="text-ink/50 leading-relaxed text-sm mb-6">{s.desc}</p>
+                  <div className="flex flex-wrap gap-2">
                     {s.benefits.map((b) => (
-                      <li key={b} className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground inline-block">
+                      <span key={b} className="text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-primary/10 text-primary">
                         {b}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <Link
-            to="/contactos"
-            className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-8 py-4 text-sm font-semibold shadow-elegant hover:scale-[1.03] transition-smooth"
-          >
-            Solicitar Orçamento <ArrowRight size={16} />
-          </Link>
+        <div className="mt-20 text-center">
+          <div className="inline-block p-1 bg-white rounded-full shadow-2xl border border-border">
+            <Link
+              to="/contactos"
+              className="inline-flex items-center gap-3 rounded-full bg-ink text-white px-12 py-5 text-sm font-black uppercase tracking-widest hover:bg-primary hover:text-ink transition-all shadow-xl"
+            >
+              Pedir Orçamento Agora <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
     </SiteLayout>

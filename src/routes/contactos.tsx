@@ -61,79 +61,81 @@ function ContactosPage() {
         subtitle="A nossa equipa responde rapidamente. Solicite um orçamento ou tire as suas dúvidas — sem compromisso."
       />
 
-      <section className="container-pro py-20 grid lg:grid-cols-3 gap-8">
-        <aside className="lg:col-span-1 space-y-4">
+      <section className="container-pro py-24 grid lg:grid-cols-3 gap-12">
+        <aside className="lg:col-span-1 space-y-6">
           {[
-            { icon: Phone, label: "Telefone", value: SITE.phone, href: `tel:${SITE.phoneRaw}` },
-            { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
-            { icon: MapPin, label: "Escritório", value: SITE.address },
+            { icon: Phone, label: "Telefone", value: SITE.phone, href: `tel:${SITE.phoneRaw}`, desc: "Fale connosco agora" },
+            { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, desc: "Envie a sua proposta" },
+            { icon: MapPin, label: "Escritório", value: SITE.address, desc: "Visite-nos em Kuito" },
           ].map((c) => (
             <a
               key={c.label}
               href={c.href ?? "#"}
-              className="block bg-card rounded-2xl p-6 border border-border hover:border-primary/40 hover:shadow-elegant transition-smooth"
+              className="block bg-white rounded-3xl p-8 border border-border shadow-xl hover:border-primary hover:shadow-2xl hover:-translate-y-1 transition-all group"
             >
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-xl bg-primary-gradient text-primary-foreground flex items-center justify-center shadow-card-soft">
-                  <c.icon size={20} />
+              <div className="flex items-start gap-5">
+                <div className="h-14 w-14 rounded-2xl bg-ink text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-ink transition-all">
+                  <c.icon size={24} />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">{c.label}</p>
-                  <p className="mt-1 font-semibold text-foreground break-all">{c.value}</p>
+                  <p className="text-[10px] uppercase tracking-widest font-black text-primary mb-1">{c.label}</p>
+                  <p className="font-black text-ink text-lg break-all leading-tight">{c.value}</p>
+                  <p className="text-ink/40 text-xs mt-2 uppercase tracking-widest font-bold">{c.desc}</p>
                 </div>
               </div>
             </a>
           ))}
 
-          <button
-            onClick={() => {
-              const form = document.querySelector('form');
-              if (form) form.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-primary text-primary-foreground px-6 py-4 font-semibold hover:opacity-90 transition-smooth"
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-4 w-full rounded-3xl bg-primary text-ink px-6 py-6 font-black uppercase tracking-widest text-sm shadow-2xl hover:bg-white hover:border-2 hover:border-primary transition-all"
           >
-            <Mail size={18} /> Preencher Formulário
-          </button>
+            <MessageCircle size={20} /> WhatsApp Direto
+          </a>
         </aside>
 
-        <div className="lg:col-span-2 bg-card rounded-2xl border border-border p-8 shadow-card-soft">
-          <h2 className="font-display text-2xl font-bold">Envie-nos um Email</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Preencha o formulário para abrir o seu cliente de email predefinido com os dados prontos a enviar.
+        <div className="lg:col-span-2 bg-white rounded-[40px] border border-border p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <h2 className="font-display text-3xl font-black text-ink">Solicitar Orçamento</h2>
+          <p className="mt-4 text-ink/50 leading-relaxed max-w-lg">
+            Preencha o formulário abaixo com os detalhes do seu projeto. Entraremos em contacto consigo o mais brevemente possível.
           </p>
-          <form className="mt-6 grid sm:grid-cols-2 gap-4" onSubmit={onSubmit} noValidate>
+          <form className="mt-10 grid sm:grid-cols-2 gap-6" onSubmit={onSubmit} noValidate>
             <Field label="Nome completo" name="name" required />
-            <Field label="Email" name="email" type="email" required />
-            <Field label="Telefone (opcional)" name="phone" type="tel" />
-            <Field label="Assunto" name="subject" required />
+            <Field label="Email institucional" name="email" type="email" required />
+            <Field label="Telefone / WhatsApp" name="phone" type="tel" />
+            <Field label="Área de Interesse" name="subject" required />
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium mb-1.5">Mensagem</label>
+              <label className="block text-[10px] uppercase font-black tracking-widest text-ink/40 mb-3">Detalhes do Projeto</label>
               <textarea
                 name="message"
                 rows={5}
                 required
+                placeholder="Descreva o que pretende realizar..."
                 maxLength={1500}
-                className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-smooth"
+                className="w-full rounded-2xl border-2 border-border bg-white px-6 py-4 text-sm font-medium text-ink focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all"
               />
             </div>
 
             {status === "error" && error && (
-              <div className="sm:col-span-2 flex items-center gap-2 text-sm text-destructive">
-                <AlertCircle size={16} /> {error}
+              <div className="sm:col-span-2 flex items-center gap-3 p-4 bg-destructive/5 text-destructive rounded-xl border border-destructive/20 text-sm font-bold">
+                <AlertCircle size={18} /> {error}
               </div>
             )}
             {status === "ok" && (
-              <div className="sm:col-span-2 flex items-center gap-2 text-sm text-primary">
-                <CheckCircle2 size={16} /> O seu cliente de email foi aberto com a mensagem pronta.
+              <div className="sm:col-span-2 flex items-center gap-3 p-4 bg-primary/5 text-primary rounded-xl border border-primary/20 text-sm font-bold">
+                <CheckCircle2 size={18} /> O seu cliente de email foi aberto com a mensagem pronta.
               </div>
             )}
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-2 pt-4">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-full bg-primary-gradient text-primary-foreground px-7 py-3.5 text-sm font-semibold shadow-elegant hover:scale-[1.02] transition-smooth"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-ink text-white px-10 py-5 text-sm font-black uppercase tracking-widest shadow-xl hover:bg-primary hover:text-ink transition-all hover:-translate-y-1"
               >
-                Enviar mensagem <Send size={16} />
+                Enviar Solicitação <Send size={18} />
               </button>
             </div>
           </form>
@@ -167,14 +169,14 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <div>
-      <label className="block text-sm font-medium mb-1.5">{label}</label>
+    <div className="flex flex-col">
+      <label className="text-[10px] uppercase font-black tracking-widest text-ink/40 mb-3">{label}</label>
       <input
         name={name}
         type={type}
         required={required}
         maxLength={255}
-        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-smooth"
+        className="w-full rounded-2xl border-2 border-border bg-white px-6 py-4 text-sm font-medium text-ink focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all"
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import biblio1 from "@/assets/proj-biblioteca-1.jpg";
 import biblio2 from "@/assets/proj-biblioteca-2.jpg";
 import biblio3 from "@/assets/proj-biblioteca-3.jpg";
@@ -80,39 +80,49 @@ function PortfolioPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Portfólio"
-        title="Projetos que reflectem o nosso compromisso com a qualidade."
-        subtitle="Uma seleção de obras e intervenções realizadas pela Kizwa Valongo em Angola."
+        eyebrow="Nossos Trabalhos"
+        title="Obras que definem novos padrões de excelência."
+        subtitle="Uma seleção de projetos realizados pela Kizwa Valongo, demonstrando rigor técnico e compromisso com o futuro de Angola."
       />
 
-      <section className="container-pro pb-32">
-        <div className="space-y-32">
+      <section className="container-pro py-24 md:py-32">
+        <div className="space-y-48">
           {projects.map((p, idx) => (
             <article 
               key={p.title} 
-              className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-fade-up"
+              className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-center animate-fade-up"
               style={{ animationDelay: `${idx * 150}ms` }}
             >
-              <div className={`lg:col-span-5 space-y-6 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/80">{p.tag}</p>
-                  <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight tracking-tight text-foreground">
+              <div className={`lg:col-span-5 space-y-8 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
+                <div className="space-y-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">{p.tag}</p>
+                  <h2 className="font-display text-4xl md:text-6xl font-black leading-tight text-ink">
                     {p.title}
                   </h2>
                 </div>
                 
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg text-ink/50 leading-relaxed max-w-lg">
                   {p.description}
                 </p>
 
-                <div className="pt-4 flex items-center gap-4 text-primary font-semibold text-sm group cursor-pointer">
-                  <span className="w-8 h-px bg-primary/30 group-hover:w-12 transition-all duration-500"></span>
-                  <span>Ver Detalhes do Projeto</span>
+                <div className="pt-6 flex flex-col gap-6">
+                  <div className="flex items-center gap-4 text-ink/30">
+                    <MapPin size={20} className="text-primary" />
+                    <span className="font-bold text-sm uppercase tracking-widest">Angola, Província do Bié</span>
+                  </div>
+                  <Link to="/contactos" className="inline-flex items-center gap-3 text-ink font-black uppercase tracking-widest text-[10px] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all self-start">
+                    Saber mais sobre esta obra <ArrowRight size={14} />
+                  </Link>
                 </div>
               </div>
 
               <div className={`lg:col-span-7 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-                <ProjectGallery images={p.images} title={p.title} />
+                <div className="relative group">
+                  <div className="absolute -inset-4 bg-primary/5 rounded-[40px] rotate-1 group-hover:rotate-0 transition-all duration-700" />
+                  <div className="relative">
+                    <ProjectGallery images={p.images} title={p.title} />
+                  </div>
+                </div>
               </div>
             </article>
           ))}

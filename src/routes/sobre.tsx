@@ -132,6 +132,3 @@ function AboutPage() {
     </SiteLayout>
   );
 }
-    </SiteLayout>
-  );
-}

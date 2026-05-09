@@ -44,9 +44,11 @@ export function Footer() {
           <div className="grid lg:grid-cols-4 gap-12 lg:gap-16">
             {/* COLUMN 1: BRAND */}
             <div>
-              <Link to="/" className="flex items-center gap-3 mb-8">
-                <img src={logo} alt="Logo" className="h-10 w-10 brightness-0 invert" />
-                <span className="font-display font-black text-3xl text-white tracking-tight uppercase">Kizwa</span>
+              <Link to="/" className="flex items-center gap-4 mb-8">
+                <img src={logo} alt="Logo" className="h-12 w-12 brightness-0 invert" />
+                <span className="font-display font-black text-2xl text-white tracking-tighter uppercase">
+                  Kizwa <span className="text-primary">Valongo</span>
+                </span>
               </Link>
               <p className="text-white/50 text-sm leading-loose mb-8">
                 Líder em excelência na engenharia e construção em Angola. Construímos estruturas que resistem ao teste do tempo.

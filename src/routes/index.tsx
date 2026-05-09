@@ -1,6 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle, MapPin, Mail, Phone, ShieldCheck, Truck, HardHat, Zap, Wifi } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import biblio from "@/assets/proj-biblioteca-1.jpg";
+import escola from "@/assets/proj-escola-1.jpg";
+import zap from "@/assets/proj-zap-1.jpg";
+import heroBg from "@/assets/hero-construction.jpg";
+import aboutImg from "@/assets/about-banner.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -15,9 +20,9 @@ const SERVICES = [
 ];
 
 const PROJECTS = [
-  { id: 1, title: "Obras Concluídas", cat: "Construção", img: "/images/project_1.png" },
-  { id: 2, title: "Projetos em Execução", cat: "Infraestrutura", img: "/images/project_1.png" },
-  { id: 3, title: "Equipamentos e Operações", cat: "Logística", img: "/images/project_1.png" },
+  { id: 1, title: "Biblioteca Municipal", cat: "Fiscalização", img: biblio },
+  { id: 2, title: "Unidades Escolares", cat: "Infraestrutura", img: escola },
+  { id: 3, title: "Espaços Comerciais", cat: "Reabilitação", img: zap },
 ];
 
 const DIFERENCIAIS = [
@@ -36,7 +41,7 @@ function HomePage() {
       {/* 1. HERO SECTION (Profissional, Preto Base) */}
       <section className="relative w-full min-h-[850px] flex items-center justify-start overflow-hidden bg-ink">
         <div className="absolute inset-0 z-0">
-          <img src="/images/hero_bg.png" alt="Construção Industrial" className="w-full h-full object-cover opacity-60" />
+          <img src={heroBg} alt="Construção Industrial Kizwa Valongo" className="w-full h-full object-cover opacity-60" />
           <div className="absolute inset-0 bg-ink/70 mix-blend-multiply" />
         </div>
         
@@ -88,7 +93,7 @@ function HomePage() {
             {/* Image Side */}
             <div className="relative">
               <div className="absolute inset-0 bg-primary translate-x-4 translate-y-4" />
-              <img src="/images/about_img.png" alt="Sobre a Kizwa Valongo" className="relative w-full h-[600px] object-cover shadow-elegant grayscale-[20%]" />
+              <img src={aboutImg} alt="Sobre a Kizwa Valongo" className="relative w-full h-[600px] object-cover shadow-elegant grayscale-[20%]" />
             </div>
 
             {/* Content Side */}
@@ -188,7 +193,7 @@ function HomePage() {
             </div>
             <div className="relative h-[600px] bg-ink overflow-hidden p-8 flex items-center justify-center text-center">
                <div className="absolute inset-0 opacity-20">
-                 <img src="/images/hero_bg.png" alt="Fundo" className="w-full h-full object-cover" />
+                 <img src={heroBg} alt="Fundo Kizwa Valongo" className="w-full h-full object-cover" />
                </div>
                <div className="relative z-10">
                  <div className="text-primary mb-6 flex justify-center">

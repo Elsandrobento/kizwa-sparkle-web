@@ -50,15 +50,19 @@ export function Header() {
       {/* TIER 2: MIDDLE BAR (INFO) */}
       <div className="bg-white py-6 border-b border-gray-100 hidden lg:block">
         <div className="container-pro flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img src={logo} alt="Kizwa Valongo" className="h-12 w-12 object-contain" />
+          <Link to="/" className="flex items-center gap-4 group">
+            <img src={logo} alt="Kizwa Valongo" className="h-14 w-14 object-contain" />
             <div className="flex flex-col">
-              <span className="font-display font-black text-3xl tracking-tight text-ink leading-none">
-                KIZWA
-              </span>
-              <span className="font-display font-bold text-[11px] tracking-[0.25em] text-primary mt-1 leading-none uppercase">
-                Valongo
+              <div className="flex items-center gap-2">
+                <span className="font-display font-black text-2xl tracking-tighter text-ink leading-none">
+                  KIZWA
+                </span>
+                <span className="font-display font-black text-2xl tracking-tighter text-primary leading-none">
+                  VALONGO
+                </span>
+              </div>
+              <span className="font-display font-bold text-[9px] tracking-[0.1em] text-muted-foreground mt-1.5 leading-none uppercase">
+                Comércio e Prestação de Serviços
               </span>
             </div>
           </Link>
@@ -112,8 +116,8 @@ export function Header() {
         <div className="container-pro flex items-center justify-between">
           {/* Mobile Logo (Tier 3 on mobile) */}
           <Link to="/" className="flex lg:hidden items-center gap-3 py-4">
-            <img src={logo} alt="Kizwa Valongo" className="h-8 w-8 object-contain" />
-            <span className="font-display font-black text-xl text-ink">KIZWA</span>
+            <img src={logo} alt="Kizwa Valongo" className="h-10 w-10 object-contain" />
+            <span className="font-display font-black text-xl text-ink tracking-tighter">KIZWA <span className="text-primary">VALONGO</span></span>
           </Link>
 
           {/* Nav Container (Konstic style uses a colored or specific background for nav on desktop) */}

@@ -4,7 +4,7 @@ export const SITE = {
   nif: "5002196310",
   phone: "+244 923 210 427",
   phoneRaw: "244923210427",
-  email: "geral@kizwa-valongo.com",
+  email: "valongofilho@gmail.com",
   address: "Avenida Sangongolo, Kuito — Bié, Angola",
   whatsappMessage: "Olá Kizwa Valongo, gostaria de solicitar um orçamento.",
 };

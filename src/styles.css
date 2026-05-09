@@ -47,17 +47,9 @@
   --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 35%, transparent);
   --shadow-card: 0 8px 30px -12px color-mix(in oklab, var(--ink) 18%, transparent);
 
-  --gradient-hero: linear-gradient(
-    165deg,
-    var(--ink) 0%,
-    color-mix(in oklab, var(--ink) 95%, var(--primary)) 100%
-  );
-  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-glow) 100%);
-  --gradient-overlay: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--ink) 100%
-  );
+  --gradient-hero: var(--ink);
+  --gradient-primary: var(--primary);
+  --gradient-overlay: color-mix(in oklab, var(--ink) 80%, transparent);
 
   --transition-smooth: 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -65,10 +57,14 @@
 :root {
   --radius: 0rem; /* Konstic uses sharp corners mainly */
 
-  /* Brand - Dark Green */
-  --primary: #1E4620;          
+  /* Brand - Premium Brown */
+  --primary: #8B5A2B;          
   --primary-foreground: #FFFFFF;
-  --primary-glow: #2E7D32;
+  --primary-glow: #A0522D;
+
+  /* Secondary - Dark Green */
+  --secondary: #1E4620;
+  --secondary-foreground: #FFFFFF;
 
   --ink: #111111;             
   --ink-foreground: #FFFFFF;

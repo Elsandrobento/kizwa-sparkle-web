@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Kizwa Valongo — Design System
- * Brand inspired by the logo: deep teal (verde-petróleo) + black + warm white.
- * All colors in oklch.
+ * Kizwa Valongo — Design System (Konstic Home 2 Clone)
+ * Brand: Dark Green (#1E4620), Black (#111111), White (#FFFFFF)
  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -42,7 +42,7 @@
   --color-ink-foreground: var(--ink-foreground);
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", system-ui, sans-serif;
 
   --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 35%, transparent);
   --shadow-card: 0 8px 30px -12px color-mix(in oklab, var(--ink) 18%, transparent);
@@ -63,40 +63,40 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0rem; /* Konstic uses sharp corners mainly */
 
-  /* Brand */
-  --primary: oklch(0.72 0.18 145);          /* vibrant emerald green */
-  --primary-foreground: oklch(0.15 0.02 145);
-  --primary-glow: oklch(0.82 0.15 145);
+  /* Brand - Dark Green */
+  --primary: #1E4620;          
+  --primary-foreground: #FFFFFF;
+  --primary-glow: #2E7D32;
 
-  --ink: oklch(0.12 0.01 220);             /* deeper near-black */
-  --ink-foreground: oklch(0.98 0.005 180);
+  --ink: #111111;             
+  --ink-foreground: #FFFFFF;
 
-  --background: oklch(0.99 0.003 180);
-  --foreground: oklch(0.12 0.01 220);
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.01 220);
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.01 220);
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
 
-  --secondary: oklch(0.96 0.01 190);
-  --secondary-foreground: oklch(0.18 0.02 220);
+  --secondary: #F8F8F8;
+  --secondary-foreground: #1A1A1A;
 
-  --muted: oklch(0.94 0.005 200);
-  --muted-foreground: oklch(0.45 0.02 220);
+  --muted: #EEEEEE;
+  --muted-foreground: #777777;
 
-  --accent: oklch(0.93 0.04 145);
-  --accent-foreground: oklch(0.2 0.05 145);
+  --accent: oklch(0.63 0.22 35 / 10%);
+  --accent-foreground: oklch(0.63 0.22 35);
 
   --destructive: oklch(0.58 0.22 25);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.9 0.01 200);
-  --input: oklch(0.9 0.01 200);
-  --ring: oklch(0.72 0.18 145);
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: oklch(0.63 0.22 35);
 }
 
 .dark {

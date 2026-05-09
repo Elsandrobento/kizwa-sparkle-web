@@ -14,7 +14,7 @@ export function Footer() {
               <Phone size={24} />
             </div>
             <div>
-              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Call Us Now</p>
+              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Ligue-nos Agora</p>
               <a href={`tel:${SITE.phoneRaw}`} className="text-xl font-display font-black text-white hover:text-white/80 transition-colors">{SITE.phone}</a>
             </div>
           </div>
@@ -23,7 +23,7 @@ export function Footer() {
               <Mail size={24} />
             </div>
             <div>
-              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Send Us Email</p>
+              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Envie um Email</p>
               <a href={`mailto:${SITE.email}`} className="text-xl font-display font-black text-white hover:text-white/80 transition-colors break-all">{SITE.email}</a>
             </div>
           </div>
@@ -32,7 +32,7 @@ export function Footer() {
               <MapPin size={24} />
             </div>
             <div>
-              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Our Location</p>
+              <p className="text-white/70 text-[11px] font-black uppercase tracking-widest mb-1">Nossa Localização</p>
               <p className="text-xl font-display font-black text-white">{SITE.address}</p>
             </div>
           </div>
@@ -49,7 +49,7 @@ export function Footer() {
                 <span className="font-display font-black text-3xl text-white tracking-tight uppercase">Kizwa</span>
               </Link>
               <p className="text-white/50 text-sm leading-loose mb-8">
-                Leading the way in engineering and construction excellence across Angola. We build structures that stand the test of time.
+                Líder em excelência na engenharia e construção em Angola. Construímos estruturas que resistem ao teste do tempo.
               </p>
               <div className="flex gap-4">
                 {[Facebook, Instagram, Linkedin].map((Icon, i) => (
@@ -64,13 +64,13 @@ export function Footer() {
             <div>
               <h4 className="text-white font-display font-black text-xl mb-8 flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary inline-block"></span>
-                Our Services
+                Nossos Serviços
               </h4>
               <ul className="space-y-4">
                 {["Commercial", "Residential", "Architecture", "Renovation"].map((s) => (
                   <li key={s}>
                     <Link to="/servicos" className="text-white/50 hover:text-primary text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2">
-                      <span className="text-primary">+</span> {s} Construction
+                      <span className="text-primary">+</span> Construção {s === "Commercial" ? "Comercial" : s === "Residential" ? "Residencial" : s === "Architecture" ? "Arquitetura" : "Remodelação"}
                     </Link>
                   </li>
                 ))}
@@ -81,13 +81,13 @@ export function Footer() {
             <div>
               <h4 className="text-white font-display font-black text-xl mb-8 flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary inline-block"></span>
-                Quick Links
+                Links Rápidos
               </h4>
               <ul className="space-y-4">
                 {["About Us", "Our Projects", "Meet Team", "Contact"].map((l) => (
                   <li key={l}>
                     <Link to="/" className="text-white/50 hover:text-primary text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2">
-                      <span className="text-primary">+</span> {l}
+                      <span className="text-primary">+</span> {l === "About Us" ? "Sobre Nós" : l === "Our Projects" ? "Nossos Projetos" : l === "Meet Team" ? "A Equipa" : "Contacto"}
                     </Link>
                   </li>
                 ))}
@@ -101,13 +101,13 @@ export function Footer() {
                 Newsletter
               </h4>
               <p className="text-white/50 text-sm leading-loose mb-6">
-                Subscribe to our newsletter for the latest news and construction updates.
+                Subscreva a nossa newsletter para as últimas notícias e atualizações de construção.
               </p>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="relative">
                   <input 
                     type="email" 
-                    placeholder="Email Address" 
+                    placeholder="Endereço de Email" 
                     className="w-full bg-white/5 border border-white/10 px-6 py-4 text-white text-sm focus:border-primary outline-none transition-colors"
                   />
                   <button className="absolute right-2 top-2 bottom-2 bg-primary text-white px-6 hover:bg-white hover:text-primary transition-colors text-[11px] font-black uppercase tracking-[0.2em] flex items-center justify-center">
@@ -123,10 +123,10 @@ export function Footer() {
       {/* BOTTOM BAR */}
       <div className="border-t border-white/5 py-8">
         <div className="container-pro flex flex-col lg:flex-row justify-between items-center gap-4 text-white/30 text-[11px] font-black uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} KIZWA VALONGO. ALL RIGHTS RESERVED.</p>
+          <p>© {new Date().getFullYear()} KIZWA VALONGO. TODOS OS DIREITOS RESERVADOS.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Termos de Serviço</a>
+            <a href="#" className="hover:text-primary transition-colors">Política de Privacidade</a>
           </div>
         </div>
       </div>

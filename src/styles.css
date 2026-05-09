@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Kizwa Valongo — Design System (Konstic Home 2 Clone)
- * Brand: Dark Green (#1E4620), Black (#111111), White (#FFFFFF)
+ * Kizwa Valongo — Design System
+ * Brand: Dark Teal (#004D4D), Black (#111111), White (#FFFFFF)
  */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -57,13 +57,13 @@
 :root {
   --radius: 0rem; /* Konstic uses sharp corners mainly */
 
-  /* Brand - Premium Brown */
-  --primary: #8B5A2B;          
+  /* Brand - Kizwa Valongo Teal */
+  --primary: #004D4D;          
   --primary-foreground: #FFFFFF;
-  --primary-glow: #A0522D;
+  --primary-glow: #006666;
 
-  /* Secondary - Dark Green */
-  --secondary: #1E4620;
+  /* Secondary - Charcoal */
+  --secondary: #2A2A2A;
   --secondary-foreground: #FFFFFF;
 
   --ink: #111111;             

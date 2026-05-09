@@ -5,11 +5,11 @@ import logo from "@/assets/logo-kizwa.png";
 import { SITE } from "@/lib/site";
 
 const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/sobre", label: "About Us" },
-  { to: "/servicos", label: "Services" },
-  { to: "/portfolio", label: "Projects" },
-  { to: "/contactos", label: "Contact" },
+  { to: "/", label: "Início" },
+  { to: "/sobre", label: "Sobre Nós" },
+  { to: "/servicos", label: "Serviços" },
+  { to: "/portfolio", label: "Projetos" },
+  { to: "/contactos", label: "Contactos" },
 ] as const;
 
 export function Header() {
@@ -34,7 +34,7 @@ export function Header() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <Clock size={14} className="text-primary" />
-              Opening Hours: Mon - Fri: 9.00 am - 6.00 pm
+              Horário de Atendimento: Seg - Sex: 09:00 - 18:00
             </span>
           </div>
           <div className="flex items-center gap-6">
@@ -70,7 +70,7 @@ export function Header() {
                 <Mail size={20} />
               </div>
               <div>
-                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Email Address</p>
+                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Endereço de Email</p>
                 <p className="font-bold text-ink text-sm">{SITE.email}</p>
               </div>
             </div>
@@ -79,7 +79,7 @@ export function Header() {
                 <Phone size={20} />
               </div>
               <div>
-                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Call Us Now</p>
+                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Ligue Agora</p>
                 <p className="font-bold text-ink text-sm">{SITE.phone}</p>
               </div>
             </div>
@@ -88,7 +88,7 @@ export function Header() {
                 <MapPin size={20} />
               </div>
               <div>
-                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Our Location</p>
+                <p className="text-[11px] font-black uppercase tracking-widest text-muted-foreground mb-0.5">Localização</p>
                 <p className="font-bold text-ink text-sm">Kuito, Bié - Angola</p>
               </div>
             </div>
@@ -96,7 +96,7 @@ export function Header() {
               to="/contactos"
               className="btn-primary"
             >
-              Get a Quote <ArrowRight size={16} />
+              Pedir Orçamento <ArrowRight size={16} />
             </Link>
           </div>
         </div>

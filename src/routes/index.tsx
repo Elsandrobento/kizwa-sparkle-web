@@ -67,18 +67,26 @@ function HomePage() {
       {/* HERO */}
       <section className="relative min-h-[760px] lg:min-h-[820px] bg-[var(--ink)] text-white overflow-hidden">
         <div className="absolute inset-0">
-          {/* A imagem inteira no fundo */}
-          <img src={heroImg} alt="Kizwa Valongo Obras" className="w-full h-full object-cover opacity-80" />
+          <div className="absolute inset-0 bg-[var(--ink)]" />
           
-          {/* O corte diagonal preto do lado esquerdo (usando clip-path ou gradient) */}
-          <div className="absolute inset-0 bg-[var(--ink)] clip-path-diagonal" style={{ clipPath: 'polygon(0 0, 65% 0, 45% 100%, 0 100%)' }} />
+          {/* Skewed container for image on the right */}
+          <div className="absolute top-0 bottom-0 right-0 w-[90%] md:w-[65%] lg:w-[55%] -skew-x-[15deg] origin-bottom-left border-l-[4px] border-primary overflow-hidden translate-x-[15%] md:translate-x-[5%]">
+            {/* Un-skew wrapper for the image */}
+            <div className="absolute top-0 bottom-0 left-0 w-[150%] skew-x-[15deg] origin-bottom-left -translate-x-[15%] md:-translate-x-[10%]">
+              <img 
+                src={heroImg} 
+                alt="Kizwa Valongo Obras" 
+                className="w-full h-full object-cover object-[75%_center] opacity-85" 
+              />
+              <div className="absolute inset-0 bg-[var(--ink)]/20 mix-blend-overlay" />
+            </div>
+          </div>
           
-          {/* Linha verde diagonal a separar */}
-          <div className="absolute inset-0 border-r-4 border-primary" style={{ clipPath: 'polygon(0 0, 65% 0, 45% 100%, 0 100%)', width: '100%', pointerEvents: 'none' }} />
-          <div className="absolute bottom-0 right-0 w-1/3 h-[2px] bg-primary" />
+          {/* Gradient overlay to ensure text readability on smaller screens */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)] via-[var(--ink)]/90 to-transparent w-[80%] md:w-[50%] pointer-events-none" />
         </div>
 
-        <div className="relative container-pro pt-44 pb-24">
+        <div className="relative container-pro pt-44 pb-24 z-10">
           <div className="max-w-2xl animate-fade-up">
             <span className="text-primary font-black uppercase tracking-[0.1em] text-lg mb-2 block">
               Soluções inteligentes em
@@ -100,7 +108,7 @@ function HomePage() {
               </a>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl pt-8 border-t border-white/10">
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
               {[
                 { icon: Award, t: "Qualidade", d: "Padrões elevados em cada projeto" },
                 { icon: ShieldCheck, t: "Segurança", d: "Ambientes seguros e equipas treinadas" },

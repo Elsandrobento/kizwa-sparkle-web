@@ -226,10 +226,12 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 7. CONTACTO (Call To Action) */}
-      <section className="py-32 bg-primary text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-ink/10" />
-        <div className="container-pro relative z-10 max-w-4xl mx-auto">
+      <section className="py-32 relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 z-0">
+          <img src={heroBg} alt="Trabalho em Obra" className="w-full h-full object-cover opacity-30" />
+          <div className="absolute inset-0 bg-primary/20 mix-blend-overlay" />
+        </div>
+        <div className="container-pro relative z-10 max-w-4xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-6xl font-display font-black mb-8">
             Pronto para iniciar o seu projeto?
           </h2>

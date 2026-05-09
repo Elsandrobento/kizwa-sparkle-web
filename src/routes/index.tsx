@@ -67,45 +67,52 @@ function HomePage() {
       {/* HERO */}
       <section className="relative min-h-[760px] lg:min-h-[820px] bg-[var(--ink)] text-white overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="" className="w-full h-full object-cover opacity-70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)] via-[var(--ink)]/85 to-transparent" />
-          <div className="absolute -right-20 top-0 bottom-0 w-1/2 opacity-20"
-               style={{ background: "linear-gradient(135deg, transparent 40%, var(--primary) 41%, var(--primary) 42%, transparent 43%, transparent 60%, var(--primary) 61%, var(--primary) 62%, transparent 63%)" }} />
+          {/* A imagem inteira no fundo */}
+          <img src={heroImg} alt="Kizwa Valongo Obras" className="w-full h-full object-cover opacity-80" />
+          
+          {/* O corte diagonal preto do lado esquerdo (usando clip-path ou gradient) */}
+          <div className="absolute inset-0 bg-[var(--ink)] clip-path-diagonal" style={{ clipPath: 'polygon(0 0, 65% 0, 45% 100%, 0 100%)' }} />
+          
+          {/* Linha verde diagonal a separar */}
+          <div className="absolute inset-0 border-r-4 border-primary" style={{ clipPath: 'polygon(0 0, 65% 0, 45% 100%, 0 100%)', width: '100%', pointerEvents: 'none' }} />
+          <div className="absolute bottom-0 right-0 w-1/3 h-[2px] bg-primary" />
         </div>
 
         <div className="relative container-pro pt-44 pb-24">
-          <div className="max-w-3xl animate-fade-up">
-            <span className="eyebrow text-primary mb-6">Soluções inteligentes em</span>
-            <h1 className="mt-6 text-5xl md:text-7xl font-display font-black leading-[1.02] tracking-tight uppercase">
+          <div className="max-w-2xl animate-fade-up">
+            <span className="text-primary font-black uppercase tracking-[0.1em] text-lg mb-2 block">
+              Soluções inteligentes em
+            </span>
+            <h1 className="text-5xl md:text-7xl font-display font-black leading-[1.02] tracking-tight uppercase">
               Construção,<br />Transporte e<br />Serviços Técnicos<br />
               <span className="text-primary">em Angola</span>
             </h1>
-            <p className="mt-8 text-lg text-white/70 max-w-xl">
+            <p className="mt-8 text-lg text-white/90 max-w-lg font-medium">
               Executamos projetos com qualidade, segurança e eficiência — da fundação à entrega final.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                <MessageCircle size={14} /> Solicitar Orçamento
+                <MessageCircle size={16} /> Solicitar Orçamento
               </a>
               <a href={`tel:${"+244923210427"}`} className="btn-outline-light">
-                <Phone size={14} /> Falar com um Consultor
+                <Phone size={16} /> Falar com um Consultor
               </a>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl pt-8 border-t border-white/10">
               {[
                 { icon: Award, t: "Qualidade", d: "Padrões elevados em cada projeto" },
                 { icon: ShieldCheck, t: "Segurança", d: "Ambientes seguros e equipas treinadas" },
                 { icon: CheckCircle2, t: "Compromisso", d: "Cumprimento de prazos e resultados reais" },
               ].map((f, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full border border-primary/40 flex items-center justify-center text-primary shrink-0">
-                    <f.icon size={16} />
+                <div key={i} className="flex items-start gap-4">
+                  <div className="text-primary shrink-0 mt-1">
+                    <f.icon size={28} />
                   </div>
                   <div>
-                    <div className="text-[11px] font-black uppercase tracking-[0.2em] text-white">{f.t}</div>
-                    <div className="text-xs text-white/60 mt-1 leading-relaxed">{f.d}</div>
+                    <div className="text-sm font-black uppercase tracking-[0.1em] text-white">{f.t}</div>
+                    <div className="text-xs text-white/70 mt-1 leading-relaxed">{f.d}</div>
                   </div>
                 </div>
               ))}
@@ -115,44 +122,43 @@ function HomePage() {
       </section>
 
       {/* ABOUT */}
-      <section className="py-24 bg-white">
-        <div className="container-pro grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <img src={aboutImg} alt="Sobre a Kizwa Valongo" className="w-full h-[480px] object-cover rounded-2xl" />
-            <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl shadow-xl hidden md:block">
-              <div className="text-4xl font-display font-black">+10</div>
-              <div className="text-[10px] uppercase tracking-widest font-bold mt-1">Anos de Experiência</div>
+      <section className="py-24 bg-[var(--ink)] text-white border-t border-white/5">
+        <div className="container-pro">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <img src={aboutImg} alt="Sobre a Kizwa Valongo" className="w-full h-[480px] object-cover rounded-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)]/40 to-transparent" />
+            </div>
+
+            <div>
+              <span className="text-primary font-black uppercase tracking-[0.1em] text-sm mb-4 block">Sobre a Kizwa Valongo</span>
+              <h2 className="text-4xl md:text-5xl font-display font-black tracking-tight text-white leading-tight">
+                Construímos mais que obras,<br />construímos <span className="text-primary">confiança.</span>
+              </h2>
+              <p className="mt-6 text-white/70 leading-relaxed font-medium">
+                A Kizwa Valongo é uma empresa angolana especializada em construção civil, transporte,
+                saneamento básico, telecomunicações e serviços técnicos. Atuamos com foco em qualidade,
+                segurança e cumprimento de prazos, oferecendo soluções completas para clientes
+                particulares e empresariais.
+              </p>
             </div>
           </div>
 
-          <div>
-            <span className="eyebrow">Sobre a Kizwa Valongo</span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display font-black tracking-tight text-[var(--ink)]">
-              Construímos mais que obras,<br />construímos <span className="text-primary">confiança.</span>
-            </h2>
-            <p className="mt-6 text-gray-600 leading-relaxed">
-              A Kizwa Valongo é uma empresa angolana especializada em construção civil, transporte,
-              saneamento básico, telecomunicações e serviços técnicos. Atuamos com foco em qualidade,
-              segurança e cumprimento de prazos, oferecendo soluções completas para clientes
-              particulares e empresariais.
-            </p>
-
-            <div className="mt-10 grid grid-cols-2 gap-8">
-              {[
-                { icon: Target, t: "Missão", d: "Entregar soluções de qualidade que superem as expectativas dos nossos clientes." },
-                { icon: Eye, t: "Visão", d: "Ser referência em Angola na prestação de serviços de engenharia e construção." },
-                { icon: Gem, t: "Valores", d: "Integridade, qualidade, segurança, inovação e compromisso com o cliente." },
-                { icon: Users, t: "Equipa", d: "Profissionais qualificados e experientes prontos para entregar os melhores resultados." },
-              ].map((v, i) => (
-                <div key={i}>
-                  <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3">
-                    <v.icon size={18} />
-                  </div>
-                  <h4 className="font-display font-black text-base text-[var(--ink)]">{v.t}</h4>
-                  <p className="text-xs text-gray-500 mt-2 leading-relaxed">{v.d}</p>
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-white/10">
+            {[
+              { icon: Target, t: "MISSÃO", d: "Entregar soluções de qualidade que superem as expectativas dos nossos clientes." },
+              { icon: Eye, t: "VISÃO", d: "Ser referência em Angola na prestação de serviços de engenharia e construção." },
+              { icon: Gem, t: "VALORES", d: "Integridade, qualidade, segurança, inovação e compromisso com o cliente." },
+              { icon: Users, t: "EQUIPA", d: "Profissionais qualificados e experientes prontos para entregar os melhores resultados." },
+            ].map((v, i) => (
+              <div key={i} className="flex flex-col items-start border-l border-white/10 pl-6 first:border-l-0 first:pl-0">
+                <div className="text-primary mb-4">
+                  <v.icon size={32} />
                 </div>
-              ))}
-            </div>
+                <h4 className="font-display font-black text-sm uppercase tracking-[0.1em] text-white">{v.t}</h4>
+                <p className="text-xs text-white/60 mt-3 leading-relaxed">{v.d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -161,33 +167,36 @@ function HomePage() {
       <section className="py-24 bg-gray-50">
         <div className="container-pro">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="eyebrow">Nossos Serviços</span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-display font-black tracking-tight text-[var(--ink)]">
+            <span className="text-primary font-black uppercase tracking-[0.1em] text-sm block">NOSSOS SERVIÇOS</span>
+            <h2 className="mt-2 text-4xl md:text-5xl font-display font-black tracking-tight text-[var(--ink)]">
               Soluções completas para o <span className="text-primary">seu projeto</span>
             </h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((s, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow group">
-                <div className="relative h-44 overflow-hidden">
+              <div key={i} className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow group relative pt-44">
+                <div className="absolute top-0 left-0 w-full h-44 overflow-hidden">
                   <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  <div className="absolute -bottom-6 left-6 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
-                    <s.icon size={20} />
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
-                <div className="p-6 pt-8">
-                  <h3 className="font-display font-black text-lg text-[var(--ink)] mb-3">{s.title}</h3>
-                  <ul className="space-y-2 mb-5">
+                
+                {/* Centered Overlapping Icon */}
+                <div className="absolute top-44 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white border-[3px] border-primary text-primary flex items-center justify-center shadow-lg z-10">
+                  <s.icon size={22} />
+                </div>
+
+                <div className="p-8 pt-10 text-center">
+                  <h3 className="font-display font-black text-xl text-[var(--ink)] mb-4">{s.title}</h3>
+                  <ul className="space-y-3 mb-8 text-left inline-block w-full">
                     {s.items.map((it, j) => (
-                      <li key={j} className="text-sm text-gray-600 flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-primary" /> {it}
+                      <li key={j} className="text-sm text-gray-600 flex items-start gap-2">
+                        <span className="w-1 h-1 rounded-full bg-[var(--ink)] mt-2 shrink-0" /> {it}
                       </li>
                     ))}
                   </ul>
-                  <Link to="/servicos" className="text-[11px] font-black uppercase tracking-[0.2em] text-primary inline-flex items-center gap-2 hover:gap-3 transition-all">
-                    Saiba Mais <ArrowRight size={12} />
+                  <Link to="/servicos" className="text-[11px] font-black uppercase tracking-[0.2em] text-primary inline-flex items-center justify-center w-full gap-2 hover:gap-3 transition-all">
+                    SAIBA MAIS <ArrowRight size={12} />
                   </Link>
                 </div>
               </div>
@@ -197,16 +206,16 @@ function HomePage() {
       </section>
 
       {/* STATS */}
-      <section className="py-16 bg-[var(--ink)] text-white">
+      <section className="py-16 bg-[var(--ink)] text-white border-y border-white/10">
         <div className="container-pro grid grid-cols-2 lg:grid-cols-4 gap-8">
           {STATS.map((s, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full border-2 border-primary text-primary flex items-center justify-center shrink-0">
-                <s.icon size={22} />
+            <div key={i} className="flex items-center gap-6">
+              <div className="text-primary shrink-0">
+                <s.icon size={48} strokeWidth={1.5} />
               </div>
               <div>
-                <div className="text-4xl font-display font-black text-primary">{s.value}</div>
-                <div className="text-[11px] uppercase tracking-widest text-white/70 mt-1">{s.label}</div>
+                <div className="text-4xl lg:text-5xl font-display font-black text-white">{s.value}</div>
+                <div className="text-[11px] uppercase tracking-widest text-white/50 mt-1 font-bold">{s.label}</div>
               </div>
             </div>
           ))}
@@ -254,19 +263,21 @@ function HomePage() {
       <section className="py-24 bg-[var(--ink)] text-white">
         <div className="container-pro">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="eyebrow">Depoimentos</span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-display font-black tracking-tight">
+            <span className="text-primary font-black uppercase tracking-[0.1em] text-sm block">DEPOIMENTOS</span>
+            <h2 className="mt-2 text-4xl md:text-5xl font-display font-black tracking-tight">
               O que dizem nossos clientes
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-primary/40 transition">
-                <Quote className="text-primary mb-4" size={28} />
-                <p className="text-white/80 leading-relaxed text-sm">{t.text}</p>
-                <div className="mt-6 pt-6 border-t border-white/10 text-[11px] uppercase tracking-widest font-black text-primary">
-                  — {t.name}
+              <div key={i} className="flex gap-4 border border-white/10 rounded-2xl p-8 hover:border-primary/40 transition">
+                <Quote className="text-primary shrink-0 rotate-180" size={40} />
+                <div className="flex flex-col justify-between">
+                  <p className="text-white/80 leading-relaxed text-sm italic mb-6">"{t.text}"</p>
+                  <div className="text-[11px] uppercase tracking-[0.1em] font-black text-white">
+                    — {t.name}
+                  </div>
                 </div>
               </div>
             ))}

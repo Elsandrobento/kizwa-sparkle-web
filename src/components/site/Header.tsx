@@ -1,44 +1,53 @@
 import { Link } from "@tanstack/react-router";
+import { MessageCircle } from "lucide-react";
+import { whatsappUrl } from "@/lib/site";
 import logo from "@/assets/logo-kizwa.png";
 
 const NAV = [
   { to: "/", label: "Início" },
+  { to: "/sobre", label: "Sobre Nós" },
   { to: "/servicos", label: "Serviços" },
-  { to: "/portfolio", label: "Projetos" },
-  { to: "/sobre", label: "Empresa" },
+  { to: "/portfolio", label: "Portfólio" },
+  { to: "/contactos", label: "Contactos" },
 ] as const;
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="container-pro h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-4">
+    <header className="absolute top-0 left-0 w-full z-50">
+      <div className="container-pro h-24 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Kizwa Valongo" className="h-12 w-auto" />
           <div className="hidden sm:block">
-            <span className="block font-display font-black text-xl leading-none tracking-tighter">KIZWA <span className="text-primary">VALONGO</span></span>
-            <span className="block text-[8px] uppercase tracking-widest font-bold text-gray-400 mt-1">Engenharia & Serviços</span>
+            <span className="block font-display font-black text-xl leading-none text-white tracking-tight">
+              KIZWA <span className="text-primary">VALONGO</span>
+            </span>
+            <span className="block text-[9px] uppercase tracking-[0.25em] font-bold text-white/50 mt-1">
+              Soluções que constroem o futuro
+            </span>
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-9">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="text-[13px] font-bold uppercase tracking-widest text-gray-500 hover:text-primary transition-colors"
-              activeProps={{ className: "text-primary" }}
+              className="text-[12px] font-bold uppercase tracking-[0.2em] text-white/80 hover:text-primary transition-colors relative py-2"
+              activeProps={{ className: "text-primary [&]:after:content-[''] [&]:after:absolute [&]:after:-bottom-1 [&]:after:left-1/2 [&]:after:-translate-x-1/2 [&]:after:w-6 [&]:after:h-0.5 [&]:after:bg-primary" }}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <Link
-          to="/contactos"
-          className="bg-primary text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 transition-transform"
+        <a
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:inline-flex items-center gap-2 border-2 border-white/30 hover:border-primary hover:bg-primary text-white px-6 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.2em] transition-all"
         >
-          Contactos
-        </Link>
+          <MessageCircle size={14} /> WhatsApp
+        </a>
       </div>
     </header>
   );

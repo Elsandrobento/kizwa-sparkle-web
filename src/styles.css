@@ -5,239 +5,52 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Kizwa Valongo — Design System
- * Brand: Dark Teal (#004D4D), Black (#111111), White (#FFFFFF)
+ * Kizwa Valongo — New Design System
+ * Focus: Minimalism, Precision, Elegance
  */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary-glow: var(--primary-glow);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
   --color-ink: var(--ink);
-  --color-ink-foreground: var(--ink-foreground);
+  
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Outfit", "Inter", system-ui, sans-serif;
-
-  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 35%, transparent);
-  --shadow-card: 0 8px 30px -12px color-mix(in oklab, var(--ink) 18%, transparent);
-
-  --gradient-hero: var(--ink);
-  --gradient-primary: var(--primary);
-  --gradient-overlay: color-mix(in oklab, var(--ink) 80%, transparent);
-
-  --transition-smooth: 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-smooth: 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  --radius: 0rem; /* Konstic uses sharp corners mainly */
-
-  /* Brand - Kizwa Valongo Teal */
-  --primary: #004D4D;          
+  --primary: #004D40;
   --primary-foreground: #FFFFFF;
-  --primary-glow: #006666;
-
-  /* Secondary - Charcoal */
-  --secondary: #2A2A2A;
-  --secondary-foreground: #FFFFFF;
-
-  --ink: #111111;             
-  --ink-foreground: #FFFFFF;
-
+  --ink: #000000;
   --background: #FFFFFF;
-  --foreground: #1A1A1A;
-
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-
-  --secondary: #F8F8F8;
-  --secondary-foreground: #1A1A1A;
-
-  --muted: #EEEEEE;
-  --muted-foreground: #777777;
-
-  --accent: oklch(0.63 0.22 35 / 10%);
-  --accent-foreground: oklch(0.63 0.22 35);
-
-  --destructive: oklch(0.58 0.22 25);
-  --destructive-foreground: oklch(0.985 0 0);
-
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: oklch(0.63 0.22 35);
-}
-
-.dark {
-  --background: oklch(0.1 0.01 220);
-  --foreground: oklch(0.98 0.005 180);
-  --card: oklch(0.14 0.015 220);
-  --card-foreground: oklch(0.98 0.005 180);
-  --popover: oklch(0.14 0.015 220);
-  --popover-foreground: oklch(0.98 0.005 180);
-  --primary: oklch(0.72 0.18 145);
-  --primary-foreground: oklch(0.1 0.01 220);
-  --primary-glow: oklch(0.82 0.15 145);
-  --secondary: oklch(0.18 0.02 220);
-  --secondary-foreground: oklch(0.98 0.005 180);
-  --muted: oklch(0.18 0.02 220);
-  --muted-foreground: oklch(0.65 0.02 200);
-  --accent: oklch(0.22 0.04 145);
-  --accent-foreground: oklch(0.98 0.005 180);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.18 145);
+  --foreground: #111111;
+  --border: #E8E8E8;
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
-
-  h1, h2, h3, h4, h5 {
+  
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    font-weight: 800;
   }
 }
 
 @layer utilities {
-  .bg-hero-gradient { background: var(--gradient-hero); }
-  .bg-primary-gradient { background: var(--gradient-primary); }
-  .bg-overlay-gradient { background: var(--gradient-overlay); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
-  .shadow-card-soft { box-shadow: var(--shadow-card); }
-  .transition-smooth { transition: all var(--transition-smooth); }
-  .text-balance { text-wrap: balance; }
   .container-pro {
     width: 100%;
+    max-width: 1200px;
     margin-inline: auto;
-    padding-inline: 1.25rem;
-    max-width: 80rem;
-  }
-  @media (min-width: 768px) {
-    .container-pro { padding-inline: 2rem; }
+    padding-inline: 1.5rem;
   }
 }
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-.animate-fade-up { animation: fade-up 800ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-.animate-fade-in { animation: fade-in 800ms ease both; }
-.animate-marquee { animation: marquee 30s linear infinite; }
-.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-
-/* Konstic-inspired utilities */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--primary);
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-.eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 2px;
-  background: var(--primary);
-  display: inline-block;
-}
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(1.875rem, 3.2vw, 3rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  background: var(--primary);
-  color: var(--primary-foreground);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  transition: all var(--transition-smooth);
-  box-shadow: 0 12px 30px -10px color-mix(in oklab, var(--primary) 55%, transparent);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px color-mix(in oklab, var(--primary) 70%, transparent); }
-.btn-outline-light {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  background: transparent;
-  color: white;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  transition: all var(--transition-smooth);
-}
-.btn-outline-light:hover { background: white; color: var(--ink); border-color: white; }
